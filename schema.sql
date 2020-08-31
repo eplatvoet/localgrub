@@ -1,0 +1,1 @@
+CREATE DATABASE localshops_db;
