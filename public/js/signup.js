@@ -1,6 +1,8 @@
 $(document).ready(() => {
   // Getting references to our form and input
   const signUpForm = $("form.signup");
+  const nameInput = $("input#name-input");
+  const zipInput = $("input#zipcode-input")
   const emailInput = $("input#email-input");
   const passwordInput = $("input#password-input");
 
@@ -8,6 +10,8 @@ $(document).ready(() => {
   signUpForm.on("submit", event => {
     event.preventDefault();
     const userData = {
+      name: nameInput.val().trim(),
+      zipcode: zipInput.val().trim(),
       email: emailInput.val().trim(),
       password: passwordInput.val().trim()
     };
@@ -16,15 +20,19 @@ $(document).ready(() => {
       return;
     }
     // If we have an email and password, run the signUpUser function
-    signUpUser(userData.email, userData.password);
+    signUpUser(userData.name, userData.zipcode, userData.email, userData.password);
+    nameInput.val("");
+    zipInput.val("");
     emailInput.val("");
     passwordInput.val("");
   });
 
   // Does a post to the signup route. If successful, we are redirected to the members page
   // Otherwise we log any errors
-  function signUpUser(email, password) {
+  function signUpUser(name, zipcode, email, password) {
     $.post("/api/signup", {
+      name: name,
+      zipcode: zipcode,
       email: email,
       password: password
     })
@@ -32,11 +40,14 @@ $(document).ready(() => {
         window.location.replace("/members");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
-      .catch(handleLoginErr);
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   function handleLoginErr(err) {
-    $("#alert .msg").text(err.responseJSON);
+    var errString = JSON.stringify(err, null, 2);
+    $("#alert .msg").text(errString);
     $("#alert").fadeIn(500);
   }
 });
