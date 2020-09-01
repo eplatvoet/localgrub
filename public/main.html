@@ -33,8 +33,8 @@
   <div class="container-fluid justify-content-end">
     <div class="navbar-header">
       Hi (name dynamically added here)! <span class="member-name"></span>
-      <a class="nav-link-sm" href="#">Reviews</a>
-      <a class="navbar-brand-sm" href="/logout">
+      <!-- <a class="nav-link-sm" href="#">Reviews</a> -->
+      <a class="navbar-brand-sm logout" href="/logout">
         Logout
       </a>
     </div>
@@ -43,26 +43,70 @@
 
   <!-- CONTAINER -->
   <div class="container">
+    <div class="row title">local grub</div>
+    <div class="row justify-content-center p-2">
+      <div class="col-md-6">
+        <div class="card shadow-lg p-3 mb-5 bg-white rounded radient">
+          <div class="card-title p-2" style="text-align:center">
+            <!-- RESTAURANT NAME  -->
+            shop_name
+          </div>
+          <div class="card-img">
+            shop_imag
+          </div>
+        </div>        
+      </div>
+      <div class="col-md-6">
+        <div class="card shadow-lg p-3 mb-5 bg-white rounded radient">
+          <div class="card-body" style="text-align:center">
+            <!-- DETAILS -->
+            shop_name
+            address
+            shop_url
+            user_rating
+          </div>
+        </div>        
+      </div>
+    </div>
 
     <div class="row justify-content-center p-5">
-      <div class="col-md-4">
-        REVIEWS
+      <div class="col-md-6">
+        <div class="card shadow-lg p-3 mb-5 bg-white rounded radient">
+          <div class="card-body" style="text-align:center">
+            <!-- USER REVIEWS -->
+            <form action="" class="create-form">
+              <textarea id="user-review" name="review" placeholder="Enter Your Review" style="width:200px; height:200px; text-align:center; border: none;"></textarea>
+            </form>
+          </div>
+        </div>        
       </div>
-      <div class="col-md-4">
-        MAIN PHOTO
-      </div>
-      <div class="col-md-4">
-        DETAILS
+      <div class="col-md-6">
+        <div class="card shadow-lg p-3 mb-5 bg-white rounded radient">
+          <div class="card-body" style="text-align:center">
+            <!-- REVIEWS FROM API -->
+            api_review?
+            api_rating?
+          </div>
+        </div>        
       </div>
     </div>
 
   </div>
+  
+  <footer class="heading justify-content-center">Local Grub - 2020 - Rutgers Coding Bootcamp</footer>
+
 
   <script src="https://code.jquery.com/jquery-3.5.1.js"
     integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
   <script type="text/javascript" src="js/members.js"></script>
+<<<<<<< HEAD
  
+=======
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" 
+    integrity="sha256-qM7QTJSlvtPSxVRjVWNM2OfTAz/3k5ovHOKmKXuYMO4=" 
+    crossorigin="anonymous"></script>
+>>>>>>> fbbb290883ec5443bb314a7fd4cf9b66663c60cc
 </body>
 
 </html>
