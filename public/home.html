@@ -45,33 +45,43 @@
   <div class="container">
 
     <div class="row justify-content-center p-5">
-      <div class="col-md-6">
-      <form class="create-form">
-        <div class="form-group" style="text-align:center">
-          <label for="city">City</label>
-          <input type="text" id="city" name="city">
+      <div class="card shadow-lg p-3 mb-5 bg-white rounded radient">
+        <div class="card-body">
+          <div class="col-md-12">
+          <form class="create-form">
+            <div class="form-group" style="text-align:center">
+              <br>
+              <label for="city">City</label>
+              <input type="text" id="city" name="city">
 
-          <label for="State">State</label>
-          <input type="text" id="state" name="state">
+              <label for="State">State</label>
+              <input type="text" id="state" name="state">
 
-          <label for="categories">Category</label>
-          <select id="categories" name="categories">
-            <option value="one">One</option>
-            <option value="two">Two</option>
-            <option value="three">Three</option>
-            <option value="four">Four</option>
-          </select>
-          <br>
-          <button type="submit" class="btn btn-light" id="city-search">Find my local spot!</button>
+              <label for="categories">Category</label>
+              <select id="categories" name="categories">
+                <option value="one">One</option>
+                <option value="two">Two</option>
+                <option value="three">Three</option>
+                <option value="four">Four</option>
+              </select>
+              <br>
+              <br>
+              <button type="submit" class="btn btn-light buttons" id="city-search">Find my local spot!</button>
+            </div>
+          </form>
+          </div>
         </div>
-      </form>
-      </div>      
+      </div>
     </div>
 
-    <div class="row justify-content-center">
+    <!-- <div class="row justify-content-center">
       <div class="col-md-12">
         <div id="map-render">MAP CONTAINER HERE</div>
       </div>
+    </div> -->
+
+    <div class="jumbotron jumbotron-fluid shadow-lg p-3 mb-5 bg-white rounded radient">
+      <div id="map-render">MAP CONTAINER HERE</div>
     </div>
 
   </div>
