@@ -24,11 +24,3 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
-
-.radient{
-  background-image:linear-gradient(#88dcff, #b9eafe, white)
-}
-
-.buttons{
-  background-color: #ff073a;
-}
