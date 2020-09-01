@@ -5,27 +5,26 @@
 - [DESCRIPTION](#DESCRIPTION)  
 - [LICENSE](#LICENSE)  
 - [INSTALLATION](#INSTALLATION)  
-- [TESTS](#TESTS)  
+<!-- - [TESTS](#TESTS)   -->
 - [QUESTIONS](#QUESTIONS)  
 - [CONTRIBUTIONS](#CONTRIBUTIONS)
 - [LINKS](#LINKS)  
 - [SCREENSHOTS](#SCREENSHOTS)  
 
 ## DESCRIPTION
-Description goes here ...
+Local Grub is 
 
 ## LICENSE
 Unlicensed
 
 ## INSTALLATION
-Install info goes here...
+Run "npm i" in command line to download dependencies. 
 
-## TESTING
-Testing info goes here ...
+<!-- ## TESTING
+Testing info goes here ... -->
 
 ## QUESTIONS
-
-My GitHub username is *eplatvoet* & my profile can be found [here](https://github.com/eplatvoet) 
+If you have any questions about this repository, please feel free to reach out to any of the team members (listed below). 
 
 ## CONTRIBUTIONS
 Team:
@@ -36,6 +35,7 @@ Team:
 
 ## LINKS
 [HEROKU](https://localgrub.herokuapp.com/)
-[GITHUB REPO](https://github.com/eplatvoet/Project-2)
+[GITHUB REPO](https://github.com/eplatvoet/Project-2)  
+
 ## SCREENSHOTS
 
