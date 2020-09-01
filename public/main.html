@@ -47,11 +47,11 @@
     <div class="row justify-content-center p-2">
       <div class="col-md-6">
         <div class="card shadow-lg p-3 mb-5 bg-white rounded radient">
-          <div class="card-title p-2" style="text-align:center">
+          <div class="card-title p-2" id="shop-name" style="text-align:center">
             <!-- RESTAURANT NAME  -->
             shop_name
           </div>
-          <div class="card-img">
+          <div class="card-img" id="shop-image">
             shop_imag
           </div>
         </div>        
@@ -60,10 +60,12 @@
         <div class="card shadow-lg p-3 mb-5 bg-white rounded radient">
           <div class="card-body" style="text-align:center">
             <!-- DETAILS -->
+            <ul id="shop-details">
             shop_name
             address
             shop_url
             user_rating
+            </ul>
           </div>
         </div>        
       </div>
@@ -82,7 +84,7 @@
       </div>
       <div class="col-md-6">
         <div class="card shadow-lg p-3 mb-5 bg-white rounded radient">
-          <div class="card-body" style="text-align:center">
+          <div class="card-body" id="api-reviews" style="text-align:center">
             <!-- REVIEWS FROM API -->
             api_review?
             api_rating?
@@ -93,7 +95,7 @@
 
   </div>
   
-  <footer class="heading justify-content-center">Local Grub - 2020 - Rutgers Coding Bootcamp</footer>
+  <footer class="heading justify-content-center fixed-bottom" style="text-align:center; color:white; size:small;">Local Grub - 2020 - Rutgers Coding Bootcamp</footer>
 
 
   <script src="https://code.jquery.com/jquery-3.5.1.js"
