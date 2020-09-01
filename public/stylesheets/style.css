@@ -1,5 +1,5 @@
 body {
-  background-image: url(../spinningfood.gif);
+  background-image: url(/images/background.gif);
   background-size: cover;
   justify-content: center;
   font-family: 'Fira Sans Condensed', sans-serif;
@@ -12,7 +12,7 @@ body {
   font-family: 'Lobster Two', cursive;
   font-size: 80px;
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color:#06b6ff; /*turquoise, #ff06b5*/ 
+  -webkit-text-stroke-color:#83efec; 
 }
 
 .heading{
@@ -20,7 +20,10 @@ body {
   font-size: 24px;
 }
 
-form.signup,
-form.login {
-  margin-top: 50px;
+.radient{
+  background-image:linear-gradient(#83efec, #9df2f0, white)
 }
+.buttons{
+  background-color: #ff073a;
+}
+
