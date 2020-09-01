@@ -6,7 +6,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fira+Sans+Condensed:wght@200&family=Lobster+Two:wght@700&display=swap" rel="stylesheet">
   <link href="stylesheets/style.css" rel="stylesheet">
+  <style>body {
+    background: linear-gradient(-45deg, #cc0029, #ff073a, #ff90a7 );
+    background-size: cover;
+    height: 1200px;
+    animation: gradient 15s ease infinite;
+  }
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }</style>
 </head>
 
 <body>
@@ -15,7 +33,7 @@
   <div class="container-fluid justify-content-end">
     <div class="navbar-header">
       Hi (name dynamically added here)! <span class="member-name"></span>
-      <a class="nav-link-sm" href="#">Reviews</a>
+      <!-- <a class="nav-link-sm" href="#">Reviews</a> -->
       <a class="navbar-brand-sm" href="/logout">
         Logout
       </a>
@@ -27,32 +45,33 @@
   <div class="container">
 
     <div class="row justify-content-center p-5">
-      <div class="col-md-6 offset-md-3">
+      <div class="col-md-6">
       <form class="create-form">
-        <div class="form-group">
-          <label for="city">City:</label>
-          <input type="text" id="city" name="name">
+        <div class="form-group" style="text-align:center">
+          <label for="city">City</label>
+          <input type="text" id="city" name="city">
+
+          <label for="State">State</label>
+          <input type="text" id="state" name="state">
+
+          <label for="categories">Category</label>
+          <select id="categories" name="categories">
+            <option value="one">One</option>
+            <option value="two">Two</option>
+            <option value="three">Three</option>
+            <option value="four">Four</option>
+          </select>
+          <br>
+          <button type="submit" class="btn btn-light" id="city-search">Find my local spot!</button>
         </div>
-        <button type="submit" class="btn btn-light" id="city-search">Find my local spot!</button>
       </form>
       </div>      
     </div>
 
     <div class="row justify-content-center">
-      <div class="col-md-3">
-        SAVED CITY LIST HERE
-        <ul>
-          <li>placeholder</li>
-          <li>placeholder</li>
-          <li>placeholder</li>
-          <li>placeholder</li>
-          <li>placeholder</li>
-          <li>placeholder</li>
-        </ul>
+      <div class="col-md-12">
+        <div id="map-render">MAP CONTAINER HERE</div>
       </div>
-      <div class="col-md-9">
-        MAP CONTAINER HERE
-      </div>   
     </div>
 
   </div>
