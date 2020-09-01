@@ -34,7 +34,7 @@
     <div class="navbar-header">
       Hi (name dynamically added here)! <span class="member-name"></span>
       <!-- <a class="nav-link-sm" href="#">Reviews</a> -->
-      <a class="navbar-brand-sm" href="/logout">
+      <a class="navbar-brand-sm logout" href="/logout">
         Logout
       </a>
     </div>
@@ -43,44 +43,55 @@
 
   <!-- CONTAINER -->
   <div class="container">
+    <div class="row title">local grub</div>
+    <div class="row justify-content-center p-2">
+      <div class="card shadow-lg p-3 mb-5 bg-white rounded radient">
+        <div class="card-body">
+          <div class="col-md-12">
+          <form class="create-form">
+            <div class="form-group" style="text-align:center">
+              <br>
+              <input type="text" id="city" name="city" placeholder="City" style="text-align:center; border:none;">
 
-    <div class="row justify-content-center p-5">
-      <div class="col-md-6">
-      <form class="create-form">
-        <div class="form-group" style="text-align:center">
-          <label for="city">City</label>
-          <input type="text" id="city" name="city">
+              <input type="text" id="state" name="state" placeholder="State" style="text-align:center; border:none;">
 
-          <label for="State">State</label>
-          <input type="text" id="state" name="state">
+              <select id="categories" name="categories" placeholder="Category" style="text-align:center; border:none;">
+                <option value="one">One</option>
+                <option value="two">Two</option>
+                <option value="three">Three</option>
+                <option value="four">Four</option>
+              </select>
+              <br>
+              <br>
+              <button type="submit" class="btn btn-light buttons" id="city-search">Find my local spot!</button>
+            </div>
+          </form>
+          </div>
 
-          <label for="categories">Category</label>
-          <select id="categories" name="categories">
-            <option value="one">One</option>
-            <option value="two">Two</option>
-            <option value="three">Three</option>
-            <option value="four">Four</option>
-          </select>
-          <br>
-          <button type="submit" class="btn btn-light" id="city-search">Find my local spot!</button>
         </div>
-      </form>
-      </div>      
-    </div>
-
-    <div class="row justify-content-center">
-      <div class="col-md-12">
-        <div id="map-render">MAP CONTAINER HERE</div>
       </div>
     </div>
 
+    <!-- <div class="row justify-content-center">
+      <div class="col-md-12">
+        <div id="map-render">MAP CONTAINER HERE</div>
+      </div>
+    </div> -->
+
+    <div class="jumbotron jumbotron-fluid shadow-lg p-3 mb-5 bg-white rounded radient">
+      <div id="map-render">MAP CONTAINER HERE</div>
+    </div>
+
   </div>
+  <footer class="heading justify-content-center">Local Grub - 2020 - Rutgers Coding Bootcamp</footer>
 
   <script src="https://code.jquery.com/jquery-3.5.1.js"
     integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" 
+    integrity="sha256-qM7QTJSlvtPSxVRjVWNM2OfTAz/3k5ovHOKmKXuYMO4=" 
+    crossorigin="anonymous"></script>
   <script type="text/javascript" src="js/members.js"></script>
-  
 </body>
 
 </html>
