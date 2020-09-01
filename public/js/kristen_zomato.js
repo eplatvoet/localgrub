@@ -1,52 +1,31 @@
 const axios = require("axios");
+require('dotenv').config();
 
-//Use userSearch to get:
-//cities
-//
-
-//getCities from Zomato:
+//search from Zomato:
 function getCities(userSearch) {
 axios({
     "method":"GET",
-    "url":"https://developers.zomato.com/api/v2.1/locations?query=newyork",
+    "url":"https://developers.zomato.com/api/v2.1/search",
     "headers":{
-    "content-type":"application/octet-stream",
-    "user_key": MisterJayKayZomato,
-    "useQueryString":true
+    "content-type":"application/json",
+    "user_key": "723c59fca106ce1599f751dc65a0c43f"
     },
     "params":{
     "query": userSearch
     }
     })
     .then((response)=>{
-    //console.log(response.data)
-      var data = JSON.stringify(response.data, null, 2);
-      console.log('what data is ',data);
-      //grab city ID
-      var cityID = response[0].id;
-
+      console.log(JSON.stringify(response.data.restaurants[0], null, 2));
     })
     .catch((error)=>{
       console.log(error)
     })
 }
 
-//Use City ID to get:
-//establishment type like bar, cafe, casual dining, etc.
-//cuisine type
-//
-//
-function getReviews() {
-
-}
-
-
-
-
+let userSearch = "Toronto"
+getCities(userSearch);
 //Search button Onclick
-$("#city-search").on("click", function () {
-    let cityName = $("#search").val().trim();
-
-    getCities(cityName);
-
-});
+// $("#city-search").on("click", function () {
+//     let cityName = $("#search").val().trim();
+//     getCities(cityName);
+// });
