@@ -17,30 +17,23 @@
       </div>
     </div>
   </nav>
-
   <div class="container">
-<<<<<<< HEAD
-    <div class="row mt-4">
-      <div class="col-md-6 offset-md-3">
-        <div class="card shadow-lg p-3 mb-5 bg-white" style="width: 100%;">
-          <h2>Sign Up Form</h2>
+    <div class="row title">local grub</div>
+    <div class="row">
+        <!-- SIGN UP CARD -->
+      <div class="col-md-6 col-md-offset-3">
+        <div class="card shadow-lg p-3 mb-5 bg-white rounded radient" style="width: 100%;">
+          <div class="heading">Sign Up Form</div>
           <form class="signup">
             <div class="form-group">
-              <label for="exampleInputName">Name</label>
+              <!-- going to need to add this to the signup.js -->
+              <label for="exampleInputName">Name:</label>
               <input type="name" class="form-control" id="name-input" placeholder="Your Name">
             </div>
             <div class="form-group">
-              <label for="exampleInputName">Zip Code</label>
-              <input type="zipcode" class="form-control" id="zipcode-input" placeholder="Your Preferred Zip Code">
+              <label for="exampleInputZip">Zip Code:</label>
+              <input type="zipcode" class="form-control" id="zipcode-input" placeholder="Your Preferred Location">
             </div>
-=======
-    <div class="row title">local grub</div>
-    <div class="row justify-content-center">
-      <div class="col-md-6 col-md-offset-3 justify-content-center">
-        <div class="card shadow-lg p-3 mb-5 bg-white rounded radient" style="width: 100%;">
-          <div class="heading">Login Form</div>
-          <form class="login">
->>>>>>> a2a3108b0c22033c2b7142f23ba548fb7a415f17
             <div class="form-group">
               <label for="exampleInputEmail1">Email address:</label>
               <input type="email" class="form-control" id="email-input" placeholder="Email">
@@ -49,15 +42,20 @@
               <label for="exampleInputPassword1">Password:</label>
               <input type="password" class="form-control" id="password-input" placeholder="Password">
             </div>
-            <button type="submit" class="btn btn-default buttons">Login</button>
+            <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+              <span class="sr-only">Error:</span> <span class="msg"></span>
+            </div>
+            <button type="submit" class="btn btn-light buttons">Sign Up</button>
           </form>
           <br />
-          <p>Or sign up <a href="/">here</a></p>
-        </div>
+          <p>Or log in <a href="/login">here</a></p>            
+        </div>        
       </div>
-
+<!-- SIDE IMAGE COLUMN -->
+<!-- *maybe include a small bio with "support local" graphic?* -->
       <div class="col-md-6 col-md-offset-3">
-          <img src="https://www.wblivesurf.com/wp-content/uploads/2020/03/01.jpg" height="100%" width="100%">
+        <img src="https://www.wblivesurf.com/wp-content/uploads/2020/03/01.jpg" height="100%" width="100%">
         <!-- <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 100%;">
           <div class="card-image"> -->
           <!-- </div>
@@ -67,12 +65,11 @@
     <footer class="heading">Local Grub - 2020 - Rutgers Coding Bootcamp</footer>
   </div>
 
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/login.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/signup.js"></script>
 
 </body>
 
 </html>
-
-
