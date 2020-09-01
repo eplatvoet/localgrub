@@ -1,8 +1,8 @@
 $(document).ready(function () {
 
+$("#city-search")
 //VARIABLES/Parameters
-var authKey = "";
-var citySearch = "";
+var authKey = "MisterJayKayMap";
 
 //DYNAMICALLY CREATE BUTTONS BASED ON SEARCH
   function createButton(citySearch) {
@@ -14,14 +14,14 @@ var citySearch = "";
 
     newButton.on("click", function () {
       citySearch = newButton.html();
-      newCurrentWeather = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&appid=${authKey}`;
+      newCurrentWeather = ``;
       runCurrentQuery(newCurrentWeather);
       $(".card").removeClass("hide");
-      $(".future-forecast").removeClass("hide");
+      //$(".future-forecast").removeClass("hide");
     });
   }
 
-  //
+  //Calling Map
   function runCurrentQuery(queryURL) {
     $.ajax({
       url: queryURL,
@@ -34,3 +34,16 @@ var citySearch = "";
   }
 
 });
+
+
+//SEARCH BUTTON ON CLICK
+$("#city-search").on("click", function () {
+  let cityName = $("#search").val().trim();
+  let stateInitials = $("#search").val().trim();
+  let radius = $("#search").val().trim();
+  let numOfMatches = $("#search").val().trim();
+  let poi = $("#search").val().trim();
+  
+  var latestQuery = `https://www.mapquestapi.com/search/v2/radius?origin=${cityName},+${stateInitials}&radius=${radius}maxMatches=${numOfMatches}&ambiguities=ignore&hostedData=mqap.ntpois|group_sic_code=?|581208&outFormat=json&key=${authKey}`;
+})
+

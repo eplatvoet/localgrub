@@ -1,0 +1,16 @@
+Mapquest AJAX calls:
+==================================================================
+Mapquest Radius Search
+
+Example:
+https://www.mapquestapi.com/search/v2/radius?origin=Denver,+CO&radius=0.15&maxMatches=3&ambiguities=ignore&hostedData=mqap.ntpois|group_sic_code=?|581208&outFormat=json&key=KEY
+
+Query Parameters:
+Origin: (i.e. City, State)
+Radius: (specificy in miles)
+POI Category: (restaurants, tourist attractions, farm markets, bakers cake and pie, grocers health foods, doughnuts, wineries, seafood markets, ice cream parlours, cafes)
+Max Matches: (1-10),
+
+-------------------------------------------------------------------
+
+
