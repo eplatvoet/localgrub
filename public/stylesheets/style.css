@@ -10,9 +10,9 @@ body {
   justify-content: center;
   background-color: transparent;
   font-family: 'Lobster Two', cursive;
-  font-size: 80px;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color:#83efec; 
+  font-size: 45px;
+  /* -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color:#83efec;  */
 }
 
 .heading{
@@ -27,3 +27,7 @@ body {
   background-color: #ff073a;
 }
 
+.logout{
+  font-family: 'Bebas Neue', cursive;
+  font-size: 16px;
+}
