@@ -44,7 +44,7 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             allowNull: true,
             validate: {
-                isNumeric: true,
+                isNumeric: true, // add smileys
             }
         },
         api_review: {

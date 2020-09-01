@@ -1,52 +1,36 @@
 const axios = require("axios");
+require('dotenv').config();
 
-//Use userSearch to get:
-//cities
-//
-
-//getCities from Zomato:
-function getCities(userSearch) {
+//search from Zomato:
+function getCities(lat, lon) {
 axios({
     "method":"GET",
-    "url":"https://developers.zomato.com/api/v2.1/locations?query=newyork",
+    "url":"https://developers.zomato.com/api/v2.1/search",
     "headers":{
-    "content-type":"application/octet-stream",
-    "user_key": MisterJayKayZomato,
-    "useQueryString":true
+    "content-type":"application/json",
+    "user_key": "723c59fca106ce1599f751dc65a0c43f"
     },
     "params":{
-    "query": userSearch
+    "lat": lat,
+    "lon": lon
     }
     })
     .then((response)=>{
-    //console.log(response.data)
-      var data = JSON.stringify(response.data, null, 2);
-      console.log('what data is ',data);
-      //grab city ID
-      var cityID = response[0].id;
 
+      console.log(JSON.stringify(response.data.restaurants[0], null, 2));
     })
     .catch((error)=>{
       console.log(error)
     })
 }
 
-//Use City ID to get:
-//establishment type like bar, cafe, casual dining, etc.
-//cuisine type
-//
-//
-function getReviews() {
-
-}
-
-
+let lat = 41.5487650000;
+let lon = -8.4269580000;
+getCities(lat, lon);
 
 
 //Search button Onclick
-$("#city-search").on("click", function () {
-    let cityName = $("#search").val().trim();
-
-    getCities(cityName);
-
-});
+// $("#city-search").on("click", function () {
+//     let cityName = $("#search").val().trim();
+//     getCities(cityName);
+// });
