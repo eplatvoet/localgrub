@@ -64,7 +64,11 @@ $(document).ready(() => {
     })
     .then((response)=>{
     console.log('list',response.data.restaurants[0]) // restaurant
-    $("#shop-name").text((response.data.restaurants[0].name, null, 2));
+    var hTag = $("<h3>");
+    $(hTag).text((response.data.restaurants[0].restaurant.name, null, 2));
+    $(".card-one").append(hTag);
+
+    // $("#shop-name").text((response.data.restaurants[0].name, null, 2));
 
     $("#shop-image").html(`<img src=${response.data.restaurants[0].restaurant.featured_image}`)
   
