@@ -89,4 +89,15 @@ module.exports = function(app) {
         res.status(401).json(err);
       });
   });
+
+  app.get("/api/restaurant/:id", (req, res) => {
+    db.Restaurant.findOne({
+      where:{
+        id: req.params.id
+      }
+    })(function(results) {
+      res.json(results);
+    })
+  })
+
 };

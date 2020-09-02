@@ -156,11 +156,17 @@ function getRestaurants(lat, lon) {
     });
 
 
-// shows id(number) that are assigned to each other.
+// getting unique restaurant information
 $(".bookmarks").on("click", "li", function () {
-  console.log($(this).attr("id"));
-});
-
+  var restaurantID = ($(this).attr("id"))
+  $.get("/api/restaurant/" + restaurantID)
+  .then(() => {
+    console.log("successful")
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+})
 
 
 // rendering all bookmarks using get method.
