@@ -5,7 +5,6 @@
   function getUserName() {
     $.get("/api/user_data").then((data) => {
       $(".member-name").text(data.name);
-      console.log("whatisthis", data);
     });
   }
 
@@ -14,7 +13,6 @@
 
     var cityInput = $("#city-input").val().trim();
     var stateInput = $("#state-input").val().trim();
-    console.log(cityInput, stateInput);
     
     getSearch(cityInput, stateInput);
     getStaticMap(cityInput, stateInput);
@@ -30,9 +28,8 @@
       method: "GET",
     })
       .then((data) => {
-        console.log("data", data);
-        console.log("latitute", data.results[0].locations[0].latLng.lat); // latitude of city
-        console.log("longitude", data.results[0].locations[0].latLng.lng); // longitude of city
+        // console.log("latitute", data.results[0].locations[0].latLng.lat); // latitude of city
+        // console.log("longitude", data.results[0].locations[0].latLng.lng); // longitude of city
         
         let lat = data.results[0].locations[0].latLng.lat;
         let lon = data.results[0].locations[0].latLng.lng;
@@ -42,23 +39,6 @@
         console.error(error);
       });
   }
-
-  // bring out static map. didn't work on pinned locations
-  //   function getStaticMap(city, state) {
-  //     const apiKey = "6kkUl9f91C5XxAWQvi59a4QnmpZMljcM";
-  //     const queryURL = `https://www.mapquestapi.com/staticmap/v5/map?key=${apiKey}&center=${city},${state}&size=600,400@2x`;
-  //     $.ajax({
-  //         url: queryURL,
-  //         method: "GET",
-  //     }).then((res) => {
-  //         // console.log(res) // displays map.
-  //         var data = res;
-  //         $("#map-render").html(`<img src='${data}'>`);
-  //         console.log("done") .catch((error) => {
-  //             console.error(error);
-  //           });
-  //   })
-  //   }
 
   // bring out static map. didn't work on pinned locations
   function getStaticMap(city, state) {
@@ -84,9 +64,29 @@
     }
     })
     .then((response)=>{
-    console.log('response',response.data);
     console.log('list',response.data.restaurants[0]) // restaurant
 
+    var resName = response.data.restaurants[0].restaurant.name;
+    var resCuisines = response.data.restaurants[0].restaurant.cuisines;
+    var resAddress = response.data.restaurants[0].restaurant.location.address ;
+    var resUrl = response.data.restaurants[0].restaurant.url;
+    var resPhotoUrl = response.data.restaurants[0].restaurant.featured_image;
+    console.log(resPhotoUrl);
+    // thumb = thumbnails
+    // featured_image = image
+
+    $(".content-one-a").text(`Restaurant Name: ${resName}`);
+    $(".content-one-b").text(`Type of cuisine: ${resCuisines}`);
+    // $(".content-one-c").text(resAddress);
+    var aEl = $("<a>");
+    $(aEl).attr("href",resUrl);
+    $(aEl).text("Link to Website");
+    $(".content-one-b").append(aEl);
+    $(".content-one-c").text(`Address: ${resAddress}`);
+    var imgEl = $("<img>");
+    $(imgEl).attr("src",resPhotoUrl).attr("alt","restaurant-photo");
+    $(".content-one-c").append(imgEl);
+    // $(".content-one-d").text(resUrl);
         // render to html placeholders.
     })
     .catch((error) => {
