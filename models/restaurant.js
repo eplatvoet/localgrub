@@ -54,7 +54,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         shop_image: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
             validate: {
                 isUrl: true
             }
@@ -74,12 +74,14 @@ module.exports = function(sequelize, DataTypes) {
             }
         },
     });
-    Saved.associate = function(models) {
-        Saved.belongsTo(models.User, {
+    
+    // need to ask if we ever need foreign key, or is having only onDelete cascade is fine.
+    Restaurant.associate = function(models) {
+        Restaurant.belongsTo(models.User, {
             foreignKey: {
                 allowNull: false
             }
         });
     };
-    return Saved;
+    return Restaurant;
 }
