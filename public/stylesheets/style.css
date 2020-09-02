@@ -37,9 +37,9 @@ body {
   font-size: 16px;
 }
 
-/* .hide {
+.hide {
   display: none;
-} */
+}
 
 .restaurant-card {
   height: 20rem;

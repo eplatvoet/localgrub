@@ -53,6 +53,7 @@ $(document).ready(() => {
     var imgEl = document.createElement("img");
     imgEl.setAttribute(`src`, `${queryURL}`);
     $("#map-render").append(imgEl);
+    $(".hide").show();
   }
 
   function getRestaurants(lat, lon) {
