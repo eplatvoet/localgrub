@@ -67,13 +67,20 @@ function getRestaurants(lat, lon) {
       user_key: "723c59fca106ce1599f751dc65a0c43f",
       useQueryString: true,
     },
-    params: {
-      lat: `${lat}`,
-      lon: `${lon}`,
-    },
-  })
-    .then((response) => {
-      console.log("list", response.data.restaurants[0]); // restaurant
+
+    "params":{
+    "lat": `${lat}`,
+    "lon": `${lon}`
+    }
+    })
+    .then((response)=>{
+    console.log('list',response.data.restaurants[0]) // restaurant
+    var hTag = $("<h3>");
+    $(hTag).text((response.data.restaurants[0].restaurant.name, null, 2));
+    $(".card-one").append(hTag);
+
+    // $("#shop-name").text((response.data.restaurants[0].name, null, 2));
+
 
       var resNameOne = response.data.restaurants[0].restaurant.name;
 
