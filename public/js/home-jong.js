@@ -100,12 +100,13 @@ function getRestaurants(lat, lon) {
 
     function createNewDisplay(data) {
       console.log('what the data each data is ', data);
-      var newCol = $('<div class="col-md-2">');
+      var newCol = $('<div class="col-md-3">');
       var newCard = $('<div class="card restaurant-card">');
       var newCardBody = $('<div class="card-body">');
       var restName = $("<h4>");
       var restAddress = $("<p>");
       var restCuisine = $("<p>");
+      var newCardFooter = $("<div class='card-footer'>")
       var saveButton = $("<button>");
 
       restName.text(data.restaurant.name);
@@ -119,7 +120,8 @@ function getRestaurants(lat, lon) {
       $(newCardBody).append(restName);
       $(newCardBody).append(restAddress);
       $(newCardBody).append(restCuisine);
-      $(newCardBody).append(saveButton);
+      $(newCardFooter).append(saveButton);
+      $(newCard).append(newCardFooter);
       return newCol;
     }
 
