@@ -36,3 +36,17 @@ body {
   font-family: 'Bebas Neue', cursive;
   font-size: 16px;
 }
+
+/* .hide {
+  display: none;
+} */
+
+.restaurant-card {
+  height: 20rem;
+  width: 15rem;
+  margin-top: 5px;
+}
+
+.card-footer {
+  text-align: center;
+}

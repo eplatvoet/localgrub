@@ -75,74 +75,86 @@ function getRestaurants(lat, lon) {
     })
     .then((response)=>{
     console.log('list',response.data.restaurants[0]) // restaurant
-    var hTag = $("<h3>");
-    $(hTag).text((response.data.restaurants[0].restaurant.name, null, 2));
-    $(".card-one").append(hTag);
 
-    // $("#shop-name").text((response.data.restaurants[0].name, null, 2));
-
-
-      var resNameOne = response.data.restaurants[0].restaurant.name;
-
-      // THIS FUNCTION DISPLAYS WHAT FIRST RES RESULT AND
-      // IF YOU CLICK IT WILL STORE ITS OWN DATA INTO MYSQL
-      var hTag = $("<h4>");
-      var buttonOne = $("<button>").attr("class", "result-one").text("Save");
-      $(hTag).text(resNameOne);
-      $(".card-one").append(hTag);
-      $(hTag).append(buttonOne);
-
-      $(".result-one").on("click", function() {
-        $.post("/api/restaurant", {
-          shop_name: response.data.restaurants[0].restaurant.name,
-          address: response.data.restaurants[0].restaurant.location.address,
-          latitude: response.data.restaurants[0].restaurant.location.latitude,
-          longitude: response.data.restaurants[0].restaurant.location.longitude,
-          shop_url: response.data.restaurants[0].restaurant.url,
-          api_review:
-            response.data.restaurants[0].restaurant.user_rating.rating_text,
-          api_rating:
-            response.data.restaurants[0].restaurant.user_rating
-              .aggregate_rating,
-          id: $(".member-id").attr("value"),
-        })
-        // .then(bookmarkRestaurant(response.data.restaurants[0].restaurant.name))
-          .then(function() {
-            console.log("You have succesfully stored this result.");
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      });
-
-      // var hTag = $("<h4>");
-      // var buttonTwo = $("<button>")
-      //   .attr("data-id", 2)
-      //   .text("Save");
-      // $(hTag).text(resNameTwo);
-      // $(".card-two").append(hTag);
-      // $(hTag).append(buttonTwo);
-
-      // var hTag = $("<h4>");
-      // var buttonThree = $("<button>")
-      //   .attr("data-id", 3)
-      //   .text("Save");
-      // $(hTag).text(resNameThree);
-      // $(".card-three").append(hTag);
-      // $(hTag).append(buttonThree);
-
-      // var hTag = $("<h4>");
-      // var buttonFour = $("<button>")
-      //   .attr("data-id", 3)
-      //   .text("Save");
-      // $(hTag).text(resNameFour);
-      // $(".card-four").append(hTag);
-      // $(hTag).append(buttonFour);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+    var resNameOne = response.data.restaurants[0].restaurant.name;
+    var resultOne = response.data.restaurants[0].restaurant;
+    displaySearch(response.data);
+    // THIS FUNCTION DISPLAYS WHAT FIRST RES RESULT AND
+    // IF YOU CLICK IT WILL STORE ITS OWN DATA INTO MYSQL
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 }
+
+    function displaySearch(res) {
+      // console.log('display search', res);
+      console.log('length', res.restaurants);
+    var displaySearchRestaurant = [];
+    // for (i = 0; i < res.restaurants.length; i++) {
+    for (i = 0; i < res.restaurants.length; i++) {
+      displaySearchRestaurant.push(createNewDisplay(res.restaurants[i]));
+    }
+    $(".start-row").append(displaySearchRestaurant);
+    }
+
+    function createNewDisplay(data) {
+      console.log('what the data each data is ', data);
+      var newCol = $('<div class="col-md-3">');
+      var newCard = $('<div class="card restaurant-card">');
+      var newCardBody = $('<div class="card-body">');
+      var restName = $("<h4>");
+      var restAddress = $("<p>");
+      var restCuisine = $("<p>");
+      var newCardFooter = $("<div class='card-footer'>")
+      var saveButton = $("<button>");
+
+      restName.text(data.restaurant.name);
+      restAddress.text(data.restaurant.location.address);
+      restCuisine.text(data.restaurant.cuisines);
+      saveButton.attr("class", "btn btn-primary btn-sm");
+      saveButton.text("Save This Restaurant");
+
+      $(newCol).append(newCard);
+      $(newCard).append(newCardBody);
+      $(newCardBody).append(restName);
+      $(newCardBody).append(restAddress);
+      $(newCardBody).append(restCuisine);
+      $(newCardFooter).append(saveButton);
+      $(newCard).append(newCardFooter);
+      return newCol;
+    }
+
+    // var hTag = $("<h4>");
+    // var buttonOne = $("<button>").attr("class", "result-one").text("Save");
+    // $(hTag).text(resNameOne);
+    // $(".card-one").append(hTag);
+    // $(hTag).append(buttonOne);
+
+    // Click event on function
+    $(".result-one").on("click", function() {
+      $.post("/api/restaurant", {
+        shop_name: response.data.restaurants[0].restaurant.name,
+        address: response.data.restaurants[0].restaurant.location.address,
+        latitude: response.data.restaurants[0].restaurant.location.latitude,
+        longitude: response.data.restaurants[0].restaurant.location.longitude,
+        shop_url: response.data.restaurants[0].restaurant.url,
+        api_review:
+          response.data.restaurants[0].restaurant.user_rating.rating_text,
+        api_rating:
+          response.data.restaurants[0].restaurant.user_rating
+            .aggregate_rating,
+        id: $(".member-id").attr("value"),
+      })
+      // .then(bookmarkRestaurant(response.data.restaurants[0].restaurant.name))
+        .then(function() {
+          console.log("You have succesfully stored this result.");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    });
+
 
 // getting unique restaurant information
 $(".bookmarks").on("click", "li", function () {
@@ -155,6 +167,7 @@ $(".bookmarks").on("click", "li", function () {
     console.log(error);
   });
 })
+
 
 // rendering all bookmarks using get method.
 function renderAllBookmark(userId) {
