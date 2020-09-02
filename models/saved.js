@@ -1,5 +1,13 @@
 module.exports = function(sequelize, DataTypes) {
-    const Saved = sequelize.define("Saved", {
+    const Restaurant = sequelize.define("Restaurant", {
+        latitute: {
+            type: DataTypes.DECIMAL(12,6),
+            allowNull: false,
+        },
+        longitude: {
+            type: DataTypes.DECIMAL(12,6),
+            allowNull: false,
+        },
         shop_name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -11,12 +19,22 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1,150]
             }
         },
-        latitute: {
-            type: DataTypes.DECIMAL(12,6),
+        neighborhood : {
+            type: DataTypes.STRING,
             allowNull: false,
+            validate: {
+                len: [1,150]
+            }
         },
-        longitude: {
-            type: DataTypes.DECIMAL(12,6),
+        hours : {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1,200]
+            }
+        },
+        cost_for_two : {
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
         shop_url: {
@@ -26,7 +44,7 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1]
             }
         },
-        shop_imag: {
+        shop_image: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -47,17 +65,6 @@ module.exports = function(sequelize, DataTypes) {
                 isNumeric: true, // add smileys
             }
         },
-        api_review: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        api_rating: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            validate: {
-                isNumeric: true,
-            }
-        }
     });
     Saved.associate = function(models) {
         Saved.belongsTo(models.User, {
