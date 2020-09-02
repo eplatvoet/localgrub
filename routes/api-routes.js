@@ -55,11 +55,12 @@ module.exports = function(app) {
     }
   });
 
-  app.get("/api/restaurants/:id", function(req,res) {
+  app.get("/api/users/:id", function(req,res) {
     console.log(req);
-    db.Saved.findAll({
+    db.Restaurant.findAll({
       where: {
-        userId: req.user.id
+        // userId: req.user.id
+        userId: req.params.id
       },
       // include: [db.User]
       // req.params.id comes out undefined.
@@ -70,7 +71,7 @@ module.exports = function(app) {
 
   app.post("/api/restaurant", (req, res) => {
     console.log(req.body)
-    db.Saved.create({
+    db.Restaurant.create({
       shop_name: req.body.shop_name,
       address: req.body.address,
       latitude: req.body.latitude,

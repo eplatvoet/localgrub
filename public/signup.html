@@ -5,6 +5,8 @@
   <title>local grub - member sign up</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="This app allows you to search restaurants of all cuisine types in whatever city the user choses- supporting local business in your own community, across the United States, and several cities outside US!">
+  <meta name="keywords" content="local business, small business, restaurants, grub, local, cuisine, food near me, places to eat near me, dinner, lunch, breakfast, restaurants nearby, food places near me, places to eat, nearby restaurants">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link href="stylesheets/style.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fira+Sans+Condensed:wght@200&family=Lobster+Two:wght@700&display=swap" rel="stylesheet">
@@ -18,15 +20,16 @@
     </div>
   </nav>
   <div class="container">
-    <div class="row justify-content-center"><img src="/images/localgrublogo.png"></div>
-    <div class="row">
+    <div class="row justify-content-center mt-4">
+      <img src="/images/localgrublogo.png" class="shadow-lg rounded">
+    </div>
+    <div class="row mt-1 justify-content-center">
         <!-- SIGN UP CARD COLUMN -->
-      <div class="col-md-6 col-md-offset-3">
-        <div class="card shadow-lg p-3 mb-5 bg-white rounded radient" style="width: 100%;">
+      <div class="col-xs-6 m-4 sizing">
+        <div class="card shadow-lg p-3 mb-5 bg-white rounded radient">
           <div class="heading">Sign Up Form</div>
           <form class="signup">
             <div class="form-group">
-              <!-- going to need to add this to the signup.js -->
               <label for="exampleInputName">Name:</label>
               <input type="name" class="form-control" id="name-input" placeholder="Your Name">
             </div>
@@ -53,12 +56,13 @@
         </div>        
       </div>
 <!-- SIDE IMAGE COLUMN -->
-      <div class="col-md-6 col-md-offset-3">
-        <img src="/images/supportlocal.jpg" height="91%" width="91%">
+      <div class="col-xs-6 mt-4">
+        <img src="/images/supportlocal.jpg" class="shadow-lg rounded" height="350px" width="350px">
       </div>
     </div>
-    <footer class="heading justify-content-center">Local Grub - 2020 - Rutgers Coding Bootcamp</footer>
   </div>
+
+  <footer class="heading fixed-bottom" style="text-align:center; color:black; font-size: small;">© 2020 - Local Grub</footer>
 
   <script src="https://code.jquery.com/jquery-3.5.1.js"
     integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="

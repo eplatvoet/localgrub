@@ -21,8 +21,13 @@ body {
 }
 
 .radient{
-  background-image:linear-gradient(#83efec, #9df2f0, white)
+  background-image:linear-gradient(#83efec, #9df2f0, white);
 }
+
+.sizing{
+  width:350px;
+}
+
 .buttons{
   background-color: #ff073a;
 }

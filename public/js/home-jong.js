@@ -7,8 +7,9 @@ function getUserName() {
     $(".member-name").text(data.name);
     $(".member-id").text(`Your ID is ${data.id}`);
     $(".member-id").attr("value", data.id);
+    renderAllBookmark(data.id);
   });
-  renderAllBookmark();
+  
 }
 
 $(".submit-button").on("click", function(event) {
@@ -139,13 +140,15 @@ function getRestaurants(lat, lon) {
 // shows id(number) that are assigned to each other.
 $(".bookmarks").on("click", "li", function () {
   console.log($(this).attr("id"));
+  // $.get("/api/restaurants/:id" + )
 });
 
+
+
 // rendering all bookmarks using get method.
-function renderAllBookmark() {
-  var userId = $(".member-id").attr("value");
-  $.get("/api/restaurants/" + userId, function(data) {
-    console.log("what data is", data);
+function renderAllBookmark(userId) {
+  // console.log('userId', userId);
+  $.get("/api/users/" + userId, function(data) {
     bookmarkRestaurant(data);
   })
 }
