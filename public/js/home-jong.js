@@ -1,6 +1,4 @@
-// This file just does a GET request to figure out which user is logged in
-  // and updates the HTML on the page
-
+$(document).ready(() => {
   // getting the users name to display.
   function getUserName() {
     $.get("/api/user_data").then((data) => {
@@ -42,6 +40,7 @@
 
   // bring out static map. didn't work on pinned locations
   function getStaticMap(city, state) {
+    $("#map-render").empty();
     const apiKey = "6kkUl9f91C5XxAWQvi59a4QnmpZMljcM";
     const queryURL = `https://www.mapquestapi.com/staticmap/v5/map?key=${apiKey}&center=${city},${state}&size=400,200@2x`;
     var imgEl = document.createElement("img");
@@ -65,27 +64,44 @@
     })
     .then((response)=>{
     console.log('list',response.data.restaurants[0]) // restaurant
+    $("#shop-name").text((response.data.restaurants[0].name, null, 2));
 
-    var resName = response.data.restaurants[0].restaurant.name;
-    var resCuisines = response.data.restaurants[0].restaurant.cuisines;
-    var resAddress = response.data.restaurants[0].restaurant.location.address ;
-    var resUrl = response.data.restaurants[0].restaurant.url;
-    var resPhotoUrl = response.data.restaurants[0].restaurant.featured_image;
-    console.log(resPhotoUrl);
-    // thumb = thumbnails
-    // featured_image = image
+    $("#shop-image").html(`<img src=${response.data.restaurants[0].restaurant.featured_image}`)
+  
+    //${"#shop-details"}
+    (response.data.restaurants[0].restaurant.name); //name
+    (response.data.restaurants[0].restaurant.location.locality); //neighborhood
+    (response.data.restaurants[0].restaurant.location.address); //address
+    (response.data.restaurants[0].restaurant.timings);// Hours
+    (response.data.restaurants[0].restaurant.average_cost_for_two);//average cost for two
+    
+    (response.data.restaurants[0].restaurant.cuisines); //cuisines/type of food served
+    (response.data.restaurants[0].restaurant.highlights);//Highlights
+    
+    //url to menu
+    $("#menu-preview").attr("src", (response.data.restaurants[0].restaurant.menu_url));
+   
 
-    $(".content-one-a").text(`Restaurant Name: ${resName}`);
-    $(".content-one-b").text(`Type of cuisine: ${resCuisines}`);
-    // $(".content-one-c").text(resAddress);
-    var aEl = $("<a>");
-    $(aEl).attr("href",resUrl);
-    $(aEl).text("Link to Website");
-    $(".content-one-b").append(aEl);
-    $(".content-one-c").text(`Address: ${resAddress}`);
-    var imgEl = $("<img>");
-    $(imgEl).attr("src",resPhotoUrl).attr("alt","restaurant-photo");
-    $(".content-one-c").append(imgEl);
+    // var resName = response.data.restaurants[0].restaurant.name;
+    // var resCuisines = response.data.restaurants[0].restaurant.cuisines;
+    // var resAddress = response.data.restaurants[0].restaurant.location.address ;
+    // var resUrl = response.data.restaurants[0].restaurant.url;
+    // var resPhotoUrl = response.data.restaurants[0].restaurant.featured_image;
+    // console.log(resPhotoUrl);
+    // // thumb = thumbnails
+    // // featured_image = image
+
+    // $(".content-one-a").text(`Restaurant Name: ${resName}`);
+    // $(".content-one-b").text(`Type of cuisine: ${resCuisines}`);
+    // // $(".content-one-c").text(resAddress);
+    // var aEl = $("<a>");
+    // $(aEl).attr("href",resUrl);
+    // $(aEl).text("Link to Website");
+    // $(".content-one-b").append(aEl);
+    // $(".content-one-c").text(`Address: ${resAddress}`);
+    // var imgEl = $("<img>");
+    // $(imgEl).attr("src",resPhotoUrl).attr("alt","restaurant-photo");
+    // $(".content-one-c").append(imgEl);
     // $(".content-one-d").text(resUrl);
         // render to html placeholders.
     })
@@ -95,6 +111,5 @@
 }
 
 
-
-
   getUserName();
+});
