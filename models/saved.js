@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
     const Restaurant = sequelize.define("Restaurant", {
-        latitute: {
+        latitude: {
             type: DataTypes.DECIMAL(12,6),
             allowNull: false,
         },
