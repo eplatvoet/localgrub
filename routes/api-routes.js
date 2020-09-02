@@ -70,15 +70,21 @@ module.exports = function(app) {
   })
 
   app.post("/api/restaurant", (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
+    console.log('array\n',req.body.highlights);
+    var highlightsStr = req.body.highlights.toString();
+    console.log('string\n',highlightsStr);
     db.Restaurant.create({
       shop_name: req.body.shop_name,
-      address: req.body.address,
       latitude: req.body.latitude,
       longitude: req.body.longitude,
+      address: req.body.address,
+      hours: req.body.hours,
+      cost_for_two: req.body.cost_for_two,
       shop_url: req.body.shop_url,
-      api_review: req.body.api_review,
-      api_rating: req.body.api_rating,
+      cuisines: req.body.cuisines,
+      highlights: highlightsStr,
+      shop_image: req.body.shop_image,
       UserId: req.body.id
     })
       .then(() => {
@@ -91,13 +97,18 @@ module.exports = function(app) {
   });
 
   app.get("/api/restaurant/:id", (req, res) => {
+    console.log("get /api/restaurant/")
     db.Restaurant.findOne({
-      where:{
+      where: {
         id: req.params.id
-      }
-    })(function(results) {
-      res.json(results);
+      },
+      include: [db.User]
     })
+    .then(function(results) {
+      res.json(results);
+    }).catch(err => {
+      res.status(404).json(err);
+    });
   })
-
 };
+

@@ -1,15 +1,15 @@
 module.exports = function(sequelize, DataTypes) {
     const Restaurant = sequelize.define("Restaurant", {
+        shop_name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         latitude: {
             type: DataTypes.DECIMAL(12,6),
             allowNull: false,
         },
         longitude: {
             type: DataTypes.DECIMAL(12,6),
-            allowNull: false,
-        },
-        shop_name: {
-            type: DataTypes.STRING,
             allowNull: false,
         },
         address : {
@@ -19,13 +19,13 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1,150]
             }
         },
-        neighborhood : {
-            type: DataTypes.STRING,
-            allowNull: true,
-            validate: {
-                len: [1,150]
-            }
-        },
+        // neighborhood : {
+        //     type: DataTypes.STRING,
+        //     allowNull: true,
+        //     validate: {
+        //         len: [1,150]
+        //     }
+        // },
         hours : {
             type: DataTypes.STRING,
             allowNull: true,
@@ -55,9 +55,6 @@ module.exports = function(sequelize, DataTypes) {
         shop_image: {
             type: DataTypes.STRING,
             allowNull: true,
-            validate: {
-                isUrl: true
-            }
         },
         user_review: {
             type: DataTypes.STRING,
