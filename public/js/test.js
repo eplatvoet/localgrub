@@ -4,7 +4,7 @@ function deleteBookmark (event) {
   //add deletebutton on click event here  
     event.stopPropagation();
     var restaurantID = ($(this).attr("id"));
-    $.get("/api/restaurant/" + restaurantID)
+    $.delete("/api/restaurant/" + restaurantID)
     .then((res) => {
         console.log("result ", res);
 
