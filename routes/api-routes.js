@@ -54,4 +54,38 @@ module.exports = function(app) {
       });
     }
   });
+
+  app.get("/api/restaurants/:id", function(req,res) {
+    console.log(req);
+    db.Saved.findAll({
+      where: {
+        userId: req.user.id
+      },
+      // include: [db.User]
+      // req.params.id comes out undefined.
+    }).then(function(data) {
+      res.json(data);
+    })
+  })
+
+  app.post("/api/restaurant", (req, res) => {
+    console.log(req.body)
+    db.Saved.create({
+      shop_name: req.body.shop_name,
+      address: req.body.address,
+      latitude: req.body.latitude,
+      longitude: req.body.longitude,
+      shop_url: req.body.shop_url,
+      api_review: req.body.api_review,
+      api_rating: req.body.api_rating,
+      UserId: req.body.id
+    })
+      .then(() => {
+        // res.json(res);
+        res.redirect(201, "/home");
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+  });
 };

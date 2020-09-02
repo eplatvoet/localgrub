@@ -5,4 +5,38 @@ $(document).ready(() => {
     $(".member-name").text(data.name);
     console.log('whatisthis',data);
   });
+
+  $("content-one").on("click", function(){
+    
+  })
+
+  $("content-two").on("click", function(){
+    
+  })
+
+  $("content-three").on("click", function(){
+    
+  })
+
+  $("content-four").on("click", function(){
+    
+  })
+
+  $("content-five").on("click", function(){
+    
+  })
+  $("content-six").on("click", function(){
+    
+  })
+
+
+
+
+
+
+
+
+
+
+
 });

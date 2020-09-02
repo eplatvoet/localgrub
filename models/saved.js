@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1,150]
             }
         },
-        latitute: {
+        latitude: {
             type: DataTypes.DECIMAL(12,6),
             allowNull: false,
         },
@@ -28,7 +28,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         shop_imag: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
             validate: {
                 isUrl: true
             }
@@ -59,6 +59,8 @@ module.exports = function(sequelize, DataTypes) {
             }
         }
     });
+    
+    // need to ask if we ever need foreign key, or is having only onDelete cascade is fine.
     Saved.associate = function(models) {
         Saved.belongsTo(models.User, {
             foreignKey: {
