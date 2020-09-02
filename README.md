@@ -22,11 +22,13 @@ Run "npm i" in command line to download dependencies.
 
 ## TECHNOLOGIES
 - HTML  
-- CSS: Bootstrap  
-- JavaScript:  
+- CSS  
+    - Bootstrap  
+- JavaScript  
     - Node  
     - Express  
     - Sequelize  
+    - Passport  
     - Axios  
 - MySQL  
 - [Zomato API](https://developers.zomato.com/api)  
@@ -38,12 +40,12 @@ If you have any questions about this repository, please feel free to reach out t
 ## CONTRIBUTIONS
 Team:  
 [Jonghyun Kang](https://github.com/misterjaykay)  
-[Kristen Van Neste](https://github.com/kmvanneste)  
 [Erin Platvoet](https://github.com/eplatvoet)  
+[Kristen Van Neste](https://github.com/kmvanneste)  
 [Andie Wheeler](https://github.com/hihellos)  
 
 ## LINKS
-[HEROKU](https://localgrub.herokuapp.com/)
+[HEROKU](https://localgrub.herokuapp.com/)  
 [GITHUB REPO](https://github.com/eplatvoet/Project-2)  
 
 ## SCREENSHOTS

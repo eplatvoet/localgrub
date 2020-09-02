@@ -80,16 +80,74 @@ function getRestaurants(lat, lon) {
     });
 }
 
-function displaySearch(res) {
-  // console.log('display search', res);
-  console.log("length", res.restaurants);
-  var displaySearchRestaurant = [];
-  // for (i = 0; i < res.restaurants.length; i++) {
-  for (i = 0; i < res.restaurants.length; i++) {
-    displaySearchRestaurant.push(createNewDisplay(res.restaurants[i]));
-  }
-  $(".start-row").append(displaySearchRestaurant);
-}
+
+    function displaySearch(res) {
+      // console.log('display search', res);
+      console.log('length', res.restaurants);
+    var displaySearchRestaurant = [];
+    // for (i = 0; i < res.restaurants.length; i++) {
+    for (i = 0; i < res.restaurants.length; i++) {
+      displaySearchRestaurant.push(createNewDisplay(res.restaurants[i]));
+    }
+    $(".start-row").append(displaySearchRestaurant);
+    }
+
+    function createNewDisplay(data) {
+      console.log('what the data each data is ', data);
+      var newCol = $('<div class="col-md-3">');
+      var newCard = $('<div class="card restaurant-card">');
+      var newCardBody = $('<div class="card-body">');
+      var restName = $("<h4>");
+      var restAddress = $("<p>");
+      var restCuisine = $("<p>");
+      var newCardFooter = $("<div class='card-footer'>")
+      var saveButton = $("<button>");
+
+      restName.text(data.restaurant.name);
+      restAddress.text(data.restaurant.location.address);
+      restCuisine.text(data.restaurant.cuisines);
+      saveButton.attr("class", "btn btn-primary btn-sm");
+      saveButton.text("Save This Restaurant");
+
+      $(newCol).append(newCard);
+      $(newCard).append(newCardBody);
+      $(newCardBody).append(restName);
+      $(newCardBody).append(restAddress);
+      $(newCardBody).append(restCuisine);
+      $(newCardFooter).append(saveButton);
+      $(newCard).append(newCardFooter);
+      return newCol;
+    }
+
+    // var hTag = $("<h4>");
+    // var buttonOne = $("<button>").attr("class", "result-one").text("Save");
+    // $(hTag).text(resNameOne);
+    // $(".card-one").append(hTag);
+    // $(hTag).append(buttonOne);
+
+    // Click event on function
+    $(".result-one").on("click", function() {
+      $.post("/api/restaurant", {
+        shop_name: response.data.restaurants[0].restaurant.name,
+        address: response.data.restaurants[0].restaurant.location.address,
+        latitude: response.data.restaurants[0].restaurant.location.latitude,
+        longitude: response.data.restaurants[0].restaurant.location.longitude,
+        shop_url: response.data.restaurants[0].restaurant.url,
+        api_review:
+          response.data.restaurants[0].restaurant.user_rating.rating_text,
+        api_rating:
+          response.data.restaurants[0].restaurant.user_rating
+            .aggregate_rating,
+        id: $(".member-id").attr("value"),
+      })
+      // .then(bookmarkRestaurant(response.data.restaurants[0].restaurant.name))
+        .then(function() {
+          console.log("You have succesfully stored this result.");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    });
 
 function createNewDisplay(data) {
   // console.log("what the data each data is ", data);
@@ -151,13 +209,5 @@ $(".start-row").on("click", "button", function() {
     });
   });
 });
-
-// NOT NEED
-// // shows id(number) that are assigned to each other.
-// $(".bookmarks").on("click", "li", function () {
-//   console.log($(this).attr("id"));
-// });
-
-
 
 getUserName();
