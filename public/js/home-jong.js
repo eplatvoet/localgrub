@@ -40,6 +40,7 @@ $(document).ready(() => {
 
   // bring out static map. didn't work on pinned locations
   function getStaticMap(city, state) {
+    $("#map-render").empty();
     const apiKey = "6kkUl9f91C5XxAWQvi59a4QnmpZMljcM";
     const queryURL = `https://www.mapquestapi.com/staticmap/v5/map?key=${apiKey}&center=${city},${state}&size=400,200@2x`;
     var imgEl = document.createElement("img");
@@ -63,27 +64,19 @@ $(document).ready(() => {
     })
     .then((response)=>{
     console.log('list',response.data.restaurants[0]) // restaurant
-    // all Restaurant Details
-    //console.log(JSON.stringify(response.data.restaurants[0], null, 2));
-    //
     $("#shop-name").text((response.data.restaurants[0].name, null, 2));
 
     $("#shop-image").html(`<img src=${response.data.restaurants[0].restaurant.featured_image}`)
   
     //${"#shop-details"}
-    console.log(JSON.stringify(response.data.restaurants[0].restaurant.name)); //name
-    console.log(JSON.stringify(response.data.restaurants[0].restaurant.location.locality)); //neighborhood
-    console.log(JSON.stringify(response.data.restaurants[0].restaurant.location.address)); //address
-    console.log(JSON.stringify(response.data.restaurants[0].restaurant.timings));// Hours
-    console.log(JSON.stringify(response.data.restaurants[0].restaurant.average_cost_for_two));//average cost for two
+    (response.data.restaurants[0].restaurant.name); //name
+    (response.data.restaurants[0].restaurant.location.locality); //neighborhood
+    (response.data.restaurants[0].restaurant.location.address); //address
+    (response.data.restaurants[0].restaurant.timings);// Hours
+    (response.data.restaurants[0].restaurant.average_cost_for_two);//average cost for two
     
-
-    console.log(
-      JSON.stringify(response.data.restaurants[0].restaurant.cuisines)
-    ); //cuisines/type of food served
-    console.log(
-      JSON.stringify(response.data.restaurants[0].restaurant.highlights)
-    ); //quick facts
+    (response.data.restaurants[0].restaurant.cuisines); //cuisines/type of food served
+    (response.data.restaurants[0].restaurant.highlights);//Highlights
     
     //url to menu
     $("#menu-preview").attr("src", (response.data.restaurants[0].restaurant.menu_url));

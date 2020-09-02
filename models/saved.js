@@ -21,21 +21,21 @@ module.exports = function(sequelize, DataTypes) {
         },
         neighborhood : {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
             validate: {
                 len: [1,150]
             }
         },
         hours : {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
             validate: {
                 len: [1,200]
             }
         },
         cost_for_two : {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: true,
         },
         shop_url: {
             type: DataTypes.STRING,
@@ -43,6 +43,14 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 len: [1]
             }
+        },
+        cuisines: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        highlights: {
+            type: DataTypes.STRING,
+            allowNull: true,
         },
         shop_image: {
             type: DataTypes.STRING,
