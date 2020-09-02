@@ -97,7 +97,6 @@ module.exports = function(app) {
   });
 
   app.get("/api/restaurant/:id", (req, res) => {
-    console.log("get /api/restaurant/")
     db.Restaurant.findOne({
       where: {
         id: req.params.id
@@ -110,5 +109,39 @@ module.exports = function(app) {
       res.status(404).json(err);
     });
   })
+
+  app.delete("/api/restaurant/del/:id", (req, res) => {
+    db.Restaurant.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+    .then(function(results) {
+      res.json(results);
+    }).catch(err => {
+      res.status(404).json(err);
+    });
+  })
+
+  app.put("/api/restaurant/up/:id", (req, res) => {
+    console.log('WHAT IS THIS REQ BODY',req.body);
+    db.Restaurant.update(
+      {
+        user_review: req.body.user_review,
+        // user_rating: req.body.user_rating
+      },
+      {
+      where: {
+        id: req.params.id
+      }
+    })
+    .then(function(results) {
+      res.json(results);
+    })
+    .catch(err => {
+      res.status(404).json(err);
+    });
+  })
+
 };
 
