@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
-  <title>Local Spots</title>
+  <title>local grub - nearby spots</title>
+  <meta name="description" content="This app allows you to search restaurants of all cuisine types in whatever city the user choses- supporting local business in your own community, across the United States, and several cities outside US!">
+  <meta name="keywords" content="local business, small business, restaurants, grub, local, cuisine, food near me, places to eat near me, dinner, lunch, breakfast, restaurants nearby, food places near me, places to eat, nearby restaurants">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -32,7 +34,7 @@
   <nav class="navbar bg-transparent p-5">
   <div class="container-fluid justify-content-end">
     <div class="navbar-header">
-      Hi (name dynamically added here)! <span class="member-name"></span>
+      Hi! <span class="member-name"></span>
       <!-- <a class="nav-link-sm" href="#">Reviews</a> -->
       <a class="navbar-brand-sm logout" href="/logout">
         Logout
@@ -88,6 +90,12 @@
       </div>
     </div>
 
+  <!-- Button to go back to home page NEW SEARCH -->
+    <div class="row justify-content-center">
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-light submit-button buttons" id="new-search" href="/home" style="text-align:center; font-size:large;">Find new local spots!</button>
+      </div>
+    </div>
   </div>
   
   <footer class="heading fixed-bottom" style="text-align:center; color:white; font-size: small;">© 2020 - Local Grub</footer>

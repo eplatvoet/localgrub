@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
-  <title>Local Spots</title>
+  <title>local grub - home</title>
+  <meta name="description" content="This app allows you to search restaurants of all cuisine types in whatever city the user choses- supporting local business in your own community, across the United States, and several cities outside US!">
+  <meta name="keywords" content="local business, small business, restaurants, grub, local, cuisine, food near me, places to eat near me, dinner, lunch, breakfast, restaurants nearby, food places near me, places to eat, nearby restaurants">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -54,13 +56,6 @@
               <input type="text" id="city-input" name="city" placeholder="City" style="text-align:center; border:none;">
 
               <input type="text" id="state-input" name="state" placeholder="State" style="text-align:center; border:none;">
-
-              <select id="categories" name="categories" placeholder="Category" style="text-align:center; border:none;">
-                <option value="one">One</option>
-                <option value="two">Two</option>
-                <option value="three">Three</option>
-                <option value="four">Four</option>
-              </select>
               <br>
               <br>
               <button type="submit" class="btn btn-light submit-button buttons" id="city-search">Find my local spot!</button>
@@ -72,13 +67,7 @@
       </div>
     </div>
 
-    <!-- <div class="row justify-content-center">
-      <div class="col-md-12">
-        <div id="map-render">MAP CONTAINER HERE</div>
-      </div>
-    </div> -->
-
-    <div class="jumbotron jumbotron-fluid shadow-lg p-3 mb-5 bg-white rounded radient">
+    <div class="card shadow-lg p-3 mb-5 bg-white rounded radient">
       <div id="map-render"></div>
     </div>
 
