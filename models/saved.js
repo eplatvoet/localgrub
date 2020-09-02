@@ -1,5 +1,13 @@
 module.exports = function(sequelize, DataTypes) {
-    const Saved = sequelize.define("Saved", {
+    const Restaurant = sequelize.define("Restaurant", {
+        latitude: {
+            type: DataTypes.DECIMAL(12,6),
+            allowNull: false,
+        },
+        longitude: {
+            type: DataTypes.DECIMAL(12,6),
+            allowNull: false,
+        },
         shop_name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -11,13 +19,23 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1,150]
             }
         },
-        latitute: {
-            type: DataTypes.DECIMAL(12,6),
-            allowNull: false,
+        neighborhood : {
+            type: DataTypes.STRING,
+            allowNull: true,
+            validate: {
+                len: [1,150]
+            }
         },
-        longitude: {
-            type: DataTypes.DECIMAL(12,6),
-            allowNull: false,
+        hours : {
+            type: DataTypes.STRING,
+            allowNull: true,
+            validate: {
+                len: [1,200]
+            }
+        },
+        cost_for_two : {
+            type: DataTypes.INTEGER,
+            allowNull: true,
         },
         shop_url: {
             type: DataTypes.STRING,
@@ -26,7 +44,15 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1]
             }
         },
-        shop_imag: {
+        cuisines: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        highlights: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        shop_image: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -47,17 +73,6 @@ module.exports = function(sequelize, DataTypes) {
                 isNumeric: true, // add smileys
             }
         },
-        api_review: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        api_rating: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            validate: {
-                isNumeric: true,
-            }
-        }
     });
     Saved.associate = function(models) {
         Saved.belongsTo(models.User, {
