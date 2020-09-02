@@ -101,7 +101,7 @@ function getRestaurants(lat, lon) {
     function createNewDisplay(data) {
       console.log('what the data each data is ', data);
       var newCol = $('<div class="col-md-2">');
-      var newCard = $('<div class="card">');
+      var newCard = $('<div class="card restaurant-card">');
       var newCardBody = $('<div class="card-body">');
       var restName = $("<h4>");
       var restAddress = $("<p>");
