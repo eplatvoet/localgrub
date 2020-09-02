@@ -54,9 +54,9 @@ module.exports = function(app) {
       });
     }
   });
-
+  
   app.get("/api/users/:id", function(req,res) {
-    console.log(req);
+    // console.log(req);
     db.Restaurant.findAll({
       where: {
         // userId: req.user.id
