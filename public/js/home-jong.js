@@ -9,7 +9,6 @@ function getUserName() {
     $(".member-id").attr("value", data.id);
     renderAllBookmark(data.id);
   });
-  
 }
 
 $(".submit-button").on("click", function(event) {
@@ -36,9 +35,6 @@ function getSearch(city, state) {
     method: "GET",
   })
     .then((data) => {
-      // console.log("latitute", data.results[0].locations[0].latLng.lat); // latitude of city
-      // console.log("longitude", data.results[0].locations[0].latLng.lng); // longitude of city
-
       let lat = data.results[0].locations[0].latLng.lat;
       let lon = data.results[0].locations[0].latLng.lng;
       getRestaurants(lat, lon);
@@ -68,24 +64,22 @@ function getRestaurants(lat, lon) {
       useQueryString: true,
     },
 
-    "params":{
-    "lat": `${lat}`,
-    "lon": `${lon}`
-    }
-    })
-    .then((response)=>{
-    console.log('list',response.data.restaurants[0]) // restaurant
-
-    var resNameOne = response.data.restaurants[0].restaurant.name;
-    var resultOne = response.data.restaurants[0].restaurant;
-    displaySearch(response.data);
-    // THIS FUNCTION DISPLAYS WHAT FIRST RES RESULT AND
-    // IF YOU CLICK IT WILL STORE ITS OWN DATA INTO MYSQL
+    params: {
+      lat: `${lat}`,
+      lon: `${lon}`,
+    },
   })
-  .catch((error) => {
-    console.log(error);
-  });
+    .then((response) => {
+      console.log("list", response.data.restaurants[0]); // restaurant
+      var resNameOne = response.data.restaurants[0].restaurant.name;
+      var resultOne = response.data.restaurants[0].restaurant;
+      displaySearch(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
+
 
     function displaySearch(res) {
       // console.log('display search', res);
@@ -155,37 +149,65 @@ function getRestaurants(lat, lon) {
         });
     });
 
+function createNewDisplay(data) {
+  // console.log("what the data each data is ", data);
+  var newCol = $('<div class="col-md-2">');
+  var newCard = $('<div class="card">');
+  var newCardBody = $('<div class="card-body">');
+  var restName = $("<h4>");
+  var restAddress = $("<p>");
+  var restCuisine = $("<p>");
+  var saveButton = $("<button>");
 
-// shows id(number) that are assigned to each other.
-$(".bookmarks").on("click", "li", function () {
-  console.log($(this).attr("id"));
+  restName.text(data.restaurant.name);
+  restAddress.text(data.restaurant.location.address);
+  restCuisine.text(data.restaurant.cuisines);
+  saveButton.attr("id", data.restaurant.R.res_id);
+  saveButton.attr("class", "btn btn-primary btn-sm");
+  saveButton.text("Save This Restaurant");
+
+  $(newCol).append(newCard);
+  $(newCard).append(newCardBody);
+  $(newCardBody).append(restName);
+  $(newCardBody).append(restAddress);
+  $(newCardBody).append(restCuisine);
+  $(newCardBody).append(saveButton);
+  return newCol;
+}
+
+// Click event on function
+$(".start-row").on("click", "button", function() {
+  // console.log($(this).attr("id")); // res id
+  var resId = $(this).attr("id");
+  axios({
+    method: "GET",
+    url: "https://developers.zomato.com/api/v2.1/restaurant",
+    headers: {
+      "content-type": "application/octet-stream",
+      user_key: "723c59fca106ce1599f751dc65a0c43f",
+      useQueryString: true,
+    },
+    params: {
+      res_id: resId,
+    },
+  }).then(function(res) {
+    console.log("You have succesfully got the data.\n", res);
+    $.post("/api/restaurant", {
+      shop_name: res.data.name,
+      latitude: res.data.location.latitude,
+      longitude: res.data.location.longitude,
+      address: res.data.location.address,
+      hours: res.data.timings,
+      cost_for_two: res.data.average_cost_for_two,
+      shop_url: res.data.url,
+      cuisines: res.data.cuisines,
+      highlights: res.data.highlights,
+      shop_image: res.data.featured_image,
+      id: $(".member-id").attr("value"),
+    }).catch((error) => {
+      console.error(error);
+    });
+  });
 });
-
-
-
-// rendering all bookmarks using get method.
-function renderAllBookmark(userId) {
-  // console.log('userId', userId);
-  $.get("/api/users/" + userId, function(data) {
-    bookmarkRestaurant(data);
-  })
-}
-
-// after getting datas from database, it is now looping thru all of it to create each list.
-function bookmarkRestaurant(data) {
-  $(".bookmarks").empty();
-  var allRestaurantList = [];
-  for (var i = 0; i < data.length; i++) {
-    allRestaurantList.push(createNewList(data[i]));
-  }
-  $(".bookmarks").append(allRestaurantList);
-}
-
-// create <li> with what restaurant name is 
-function createNewList(data) {
-  var newliEl = $("<li>");
-  $(newliEl).addClass("list-group-item").text(data.shop_name).attr("id", data.id);
-  return newliEl;
-}
 
 getUserName();
