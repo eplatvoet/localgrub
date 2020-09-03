@@ -42,7 +42,7 @@ $(document).ready(() => {
     $.get("/api/restaurant/" + restaurantID)
       .then((res) => {
         console.log("result \n", res);
-        renderInfo(res.address, res.shop_name, res.shop_url);
+        renderInfo(res.address, res.shop_name, res.shop_url, res.hours, res.cost_for_two, res.cuisines, res.highlights);
         renderImage(res.shop_image);
         renderReview(res.id, res.user_review, res.user_rating);
       })
@@ -51,18 +51,30 @@ $(document).ready(() => {
       });
   });
 
-  function renderInfo(address, name, url) {
+  function renderInfo(address, name, url, hours, costForTwo, cuisines, highlights) {
     $("#shop-details").empty();
     var title = $("<h4>");
     var pElOne = $("<p>");
-    var pElTwo = $("<p>");
+    var pElTwo = $("<a>");
+    var pElThree = $("<p>");
+    var pElFour = $("<p>");
+    var pElFive = $("<p>");
+    var pElSix = $("<p>");
 
     $(title).text(name);
     $(pElOne).text(address);
-    $(pElTwo).text(url);
+    $(pElTwo).attr("href", url).text(`Link to Restaurant`)
+    $(pElThree).text(hours);
+    $(pElFour).text(`Average cost for two: $${costForTwo}`);
+    $(pElFive).text(`Cuisine: ${cuisines}`);
+    $(pElSix).text(highlights.split(", "));
 
     $("#shop-details").append(title);
     $("#shop-details").append(pElOne);
+    $("#shop-details").append(pElThree);
+    $("#shop-details").append(pElFour);
+    $("#shop-details").append(pElFive);
+    $("#shop-details").append(pElSix);
     $("#shop-details").append(pElTwo);
   }
 
@@ -151,11 +163,19 @@ $(document).ready(() => {
   }
 
   function renderImage(image) {
-    $("#shop-image").empty();
-    var imgEl = $("<img>");
-    $(imgEl).attr("src", image);
-    $(imgEl).attr("class", "card-img");
-    $("#shop-image").append(imgEl);
+    if (image === "") {
+        $("#shop-image").empty();
+        var imgEl = $("<img>");
+        $(imgEl).attr("src", "./images/background.gif");
+        $(imgEl).attr("class", "card-img");
+        $("#shop-image").append(imgEl);
+    } else {
+        $("#shop-image").empty();
+        var imgEl = $("<img>");
+        $(imgEl).attr("src", image);
+        $(imgEl).attr("class", "card-img");
+        $("#shop-image").append(imgEl);
+    }
   }
 
   // Delete Button
