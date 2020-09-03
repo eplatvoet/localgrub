@@ -3,117 +3,126 @@
 
 <head>
   <title>local grub - nearby spots</title>
-  <meta name="description" content="This app allows you to search restaurants of all cuisine types in whatever city the user choses- supporting local business in your own community, across the United States, and several cities outside US!">
-  <meta name="keywords" content="local business, small business, restaurants, grub, local, cuisine, food near me, places to eat near me, dinner, lunch, breakfast, restaurants nearby, food places near me, places to eat, nearby restaurants">
+  <meta name="description"
+    content="This app allows you to search restaurants of all cuisine types in whatever city the user choses- supporting local business in your own community, across the United States, and several cities outside US!">
+  <meta name="keywords"
+    content="local business, small business, restaurants, grub, local, cuisine, food near me, places to eat near me, dinner, lunch, breakfast, restaurants nearby, food places near me, places to eat, nearby restaurants">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fira+Sans+Condensed:wght@200&family=Lobster+Two:wght@700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fira+Sans+Condensed:wght@200&family=Lobster+Two:wght@700&display=swap"
+    rel="stylesheet">
   <link href="stylesheets/style.css" rel="stylesheet">
   <!-- STYLING FOR GRADIENT BACKGROUND TO OVERRIDE GIF BACKGROUND -->
-  <style>body {
-    background: linear-gradient(-45deg, #cc0029, #ff073a, #ff90a7 );
-    background-size: cover;
-    animation: gradient 15s ease infinite;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-  }
-  @keyframes gradient {
-    0% {
-      background-position: 0% 50%;
+  <style>
+    body {
+      background: linear-gradient(-45deg, #cc0029, #ff073a, #ff90a7);
+      background-size: cover;
+      animation: gradient 15s ease infinite;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
     }
-    50% {
-      background-position: 100% 50%;
+
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
     }
-    100% {
-      background-position: 0% 50%;
-    }
-  }</style>
+  </style>
 </head>
 
 <body>
   <!-- NAV BAR -->
   <nav class="navbar bg-transparent p-5">
-  <div class="container justify-content-end">
-    <div class="navbar-header logout">
-      Hi <span class="member-name"></span>!<span class="member-id hide"></span>
-      <a class="navbar-brand-sm logout m-2" href="/logout">Logout</a>
+    <div class="container justify-content-end">
+      <div class="navbar-header logout">
+        Hi <span class="member-name"></span>!<span class="member-id hide"></span>
+        <a class="navbar-brand-sm logout m-2" href="/logout">Logout</a>
+      </div>
     </div>
-  </div>
   </nav>
 
   <!-- CONTAINER -->
   <div class="container">
     <div class="row title">local grub</div>
 
-      <!-- LIST OF USER'S SAVED BUTTONS -->
+    <!-- LIST OF USER'S SAVED BUTTONS -->
     <div class="row justify-content-center mt-4">
       <div class="col-lg-2 logout">
         <ul class="bookmarks" style="text-align:center; list-style-type:none;">
         </ul>
       </div>
 
+      <!-- RESTAURANT DETAILS WILL GENERATE HERE -->
       <div class="col-lg-10">
         <div class="row">
 
+          <!-- RESTAURANT IMAGE WILL APPEAR HERE -->
           <div class="col-md-12">
-            <!-- RESTAURANT IMAGE WILL APPEAR HERE -->
             <div class="card shadow-lg p-3 mb-5 bg-white rounded radient">
               <div class="card-img" id="shop-image">
-                <!-- shop_image -->
               </div>
-            </div>        
+            </div>
+          </div>
+        </div>
+
+        <!-- USER REVIEW AREA -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded radient">
+              <div class="card-title" style="text-align:center;">What Did You Think?</div>
+              <div class="card-body" style="text-align:center">
+                <!-- USER REVIEW AREA WILL APPEAR HERE -->
+                <form action="" class="create-form review-form">
+                </form>
+              </div>
+            </div>
           </div>
 
-        </div>
-      
-
-      <!-- <div class="row justify-content-center p-5"> -->
-      <div class="row">
-        <div class="col-md-6">
-          <div class="card shadow-lg p-3 mb-5 bg-white rounded radient">
-            <div class="card-title" style="text-align:center;">What Did You Think?</div>
-            <div class="card-body" style="text-align:center">
-              <!-- USER REVIEWS -->
-              <form action="" class="create-form review-form">
-              </form>
-            </div>
-          </div>        
-        </div>
-
-        <div class="col-md-6">
-          <div class="card shadow-lg p-3 mb-5 bg-white rounded radient">
-            <div class="card-title" style="text-align:center;">Restaurant Details</div>
-            <div class="card-body" style="text-align:center">
-              <!-- DETAILS -->
-              <div id="shop-details">
+          <!-- RESTAURANT DETAILS AREA -->
+          <div class="col-md-6">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded radient">
+              <div class="card-title" style="text-align:center;">Restaurant Details</div>
+              <div class="card-body" style="text-align:center">
+                <!-- DETAILS WILL APPEAR HERE -->
+                <div id="shop-details">
+                </div>
               </div>
             </div>
-          </div>        
+          </div>
         </div>
       </div>
-      <!-- </div> -->
-
     </div>
-  </div>
-  <!-- Button to go back to home page NEW SEARCH -->
+
+    <!-- BUTTON TO GO BACK TO NEW SEARCH (RETURN TO HOME PAGE)-->
     <div class="row justify-content-center mb-4">
       <div class="col-md-2">
-        <a type="submit" class="btn btn-light submit-button buttons" id="new-search" href="/home" style="text-align:center; font-size:large;">Find new local spots!</a>
+        <a type="submit" class="btn btn-light submit-button buttons" id="new-search" href="/home"
+          style="text-align:center; font-size:large;">Find new local spots!</a>
       </div>
     </div>
   </div>
-  
-  <footer class="heading fixed-bottom" style="text-align:left; color:white; font-size: small;">© 2020 - Local Grub</footer>
 
+  <!-- FOOTER -->
+  <footer class="heading fixed-bottom" style="text-align:left; color:white; font-size: small;">© 2020 - Local Grub
+  </footer>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.js"
-    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  <!-- SCRIPT TAGS FOR BOOTSTRAP, BACKGROUND, AXIOS & JAVASCRIPT FILES -->
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" 
-    integrity="sha256-qM7QTJSlvtPSxVRjVWNM2OfTAz/3k5ovHOKmKXuYMO4=" 
-    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
+    integrity="sha256-qM7QTJSlvtPSxVRjVWNM2OfTAz/3k5ovHOKmKXuYMO4=" crossorigin="anonymous"></script>
   <script type="text/javascript" src="./js/main.js"></script>
+
 </body>
 
 </html>

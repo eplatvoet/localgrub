@@ -46,7 +46,7 @@ Team:
 
 ## LINKS
 [HEROKU](https://localgrub.herokuapp.com/)  
-[GITHUB REPO](https://github.com/eplatvoet/Project-2)  
+[GITHUB REPO](https://github.com/eplatvoet/localgrub)  
 
 ## SCREENSHOTS
 

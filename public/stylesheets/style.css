@@ -2,47 +2,36 @@ body {
   background-image: url(/images/background.gif);
   background-size: cover;
   justify-content: center;
-  font-family: 'Fira Sans Condensed', sans-serif;
+  font-family: "Fira Sans Condensed", sans-serif;
   font-size: 16px;
 }
-
-/* .navbar-header {
-  font-weight: bolder;
-  font-size: larger;
-} */
 
 .title {
   justify-content: center;
   background-color: transparent;
-  font-family: 'Lobster Two', cursive;
+  font-family: "Lobster Two", cursive;
   font-size: 45px;
-  /* -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color:#83efec;  */
 }
 
-.heading{
-  font-family: 'Bebas Neue', cursive;
+.heading {
+  font-family: "Bebas Neue", cursive;
   font-size: 24px;
 }
 
-.radient{
-  background-image:linear-gradient(#83efec, #9df2f0, white);
+.radient {
+  background-image: linear-gradient(#83efec, #9df2f0, white);
 }
 
-.sizing{
-  width:350px;
+.sizing {
+  width: 350px;
 }
 
-.buttons{
+.buttons {
   background-color: #ff073a;
 }
 
-/* #map-render{
-  object-fit: cover;
-} */
-
-.logout{
-  font-family: 'Bebas Neue', cursive;
+.logout {
+  font-family: "Bebas Neue", cursive;
   font-size: 16px;
 }
 
@@ -50,10 +39,6 @@ body {
   display: none;
 }
 
-/* #shop-image{
-  width: 600px;
- 
-} */
 .restaurant-card {
   height: 20rem;
   width: 15rem;
@@ -65,7 +50,5 @@ body {
 }
 
 .card-img {
-  /* width: 100%;
-    height: 15vw; */
-    object-fit: cover;
+  object-fit: cover;
 }
