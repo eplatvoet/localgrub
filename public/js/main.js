@@ -88,12 +88,40 @@ $(document).ready(() => {
       .attr("placeholder", "Write Your Review")
       .attr(
         "style",
-        "width:400px; height:200px; text-align:center; border: none;"
+        "width:400px; height:200px; text-align:center; border: none; width: 90%;"
       );
     if (review !== null) {
       $(reviewBody).append(review);
     }
     $(".review-form").append(reviewBody);
+
+    var linebreak = $("<br>");
+    $(".review-form").append(linebreak);
+
+    var ratingDisplay = $("<p>");
+    switch(rating) {
+        case 5: 
+        ratingDisplay.text("😍😍😍😍😍");
+        break;
+        
+        case 4: 
+        ratingDisplay.text("😍😍😍😍");
+        break;
+       
+        case 3: 
+        ratingDisplay.text("😍😍😍");
+        break;
+       
+        case 2: 
+        ratingDisplay.text("😍😍");
+        break;
+        
+        case 1: 
+        ratingDisplay.text("😍");
+        break;
+    }
+    $(".review-form").append(ratingDisplay);
+
     var ratingBody = $("<select>");
     $(ratingBody)
       .attr("name", "rating")
@@ -119,6 +147,7 @@ $(document).ready(() => {
     ratingBody.append(rateTwo);
     ratingBody.append(rateOne);
     $(".review-form").append(ratingBody);
+   
   }
 
   function renderImage(image) {
@@ -147,16 +176,18 @@ $(document).ready(() => {
         console.error(error);
       });
   }
+
+//   $('#sel1 option:selected').val();
+//   $('#sel1 option:selected').text();
   // var ratingInput = Need one
   // Update Button
   $(document).on("click", "button.update-btn", function() {
     var reviewInput = $("#user-review");
+    var ratingInput = $('#user-rating option:selected').val();
     var resId = $(".update-btn").attr("value");
     var newReview = {
       user_review: reviewInput.val().trim(),
-      // user_rating: ratingInput
-      //   .val()
-      //   .trim(),
+      user_rating: ratingInput
     };
     updateBookmark(resId, newReview);
   });
