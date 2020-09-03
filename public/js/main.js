@@ -144,33 +144,33 @@ $(document).ready(() => {
     $(".review-form").append(linebreak);
 
     // RATING NAME
-    const ratingText = $("<p>");
-    ratingText.attr("class", "col-md-6");
-    ratingText.text("Your Rating: ");
-    $(".review-form").append(ratingText);
+    // const ratingText = $("<p>");
+    // // ratingText.attr("class", "col-md-6");
+    // ratingText.text("Your Rating: ");
+    // $(".review-form").append(ratingText);
 
     // CREATING RATING
     const ratingDisplay = $("<p>");
-    ratingDisplay.attr("class", "col-md-6");
+    // ratingDisplay.attr("class", "col-md-6");
     switch (rating) {
       case 5:
-        ratingDisplay.text("😍😍😍😍😍");
+        ratingDisplay.text("Your Rating: 😍😍😍😍😍");
         break;
 
       case 4:
-        ratingDisplay.text("😍😍😍😍");
+        ratingDisplay.text("Your Rating: 😍😍😍😍");
         break;
 
       case 3:
-        ratingDisplay.text("😍😍😍");
+        ratingDisplay.text("Your Rating: 😍😍😍");
         break;
 
       case 2:
-        ratingDisplay.text("😍😍");
+        ratingDisplay.text("Your Rating: 😍😍");
         break;
 
       case 1:
-        ratingDisplay.text("😍");
+        ratingDisplay.text("Your Rating: 😍");
         break;
     }
     $(".review-form").append(ratingDisplay);
@@ -183,19 +183,19 @@ $(document).ready(() => {
     // .attr("class", "form-control");
     const rateOne = $("<option>")
       .attr("value", 1)
-      .text("1");
+      .text("😍");
     const rateTwo = $("<option>")
       .attr("value", 2)
-      .text("2");
+      .text("😍😍");
     const rateThree = $("<option>")
       .attr("value", 3)
-      .text("3");
+      .text("😍😍😍");
     const rateFour = $("<option>")
       .attr("value", 4)
-      .text("4");
+      .text("😍😍😍😍");
     const rateFive = $("<option>")
       .attr("value", 5)
-      .text("5");
+      .text("😍😍😍😍😍");
     ratingBody.append(rateFive);
     ratingBody.append(rateFour);
     ratingBody.append(rateThree);
