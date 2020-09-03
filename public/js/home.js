@@ -100,8 +100,10 @@ $(document).ready(() => {
     $(".start-row").empty();
     var displaySearchRestaurant = [];
     var removeArr = ["Wawa","KFC","Red Lobster","Panera Bread","Taco Bell","Pizza Hut","McDonald's","Subway","Domino's Pizza", "Papa John's Pizza", "Burger King", "Starbucks","Dunkin' Donuts","Dunkin'","Olive Garden","Dairy Queen"];
+    // console.log(removeArr.indexOf(res.restaurants[0].restaurant.name));
+    // console.log(res.restaurants[0].restaurant.name.indexOf(removeArr));
     for (i = 0; i < res.restaurants.length; i++) {
-      if (res.restaurants[i].restaurant.name.includes(removeArr) === false) {
+      if (removeArr.indexOf(res.restaurants[i].restaurant.name) === -1) {
       displaySearchRestaurant.push(createNewDisplay(res.restaurants[i]));
       }
     }
