@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fira+Sans+Condensed:wght@200&family=Lobster+Two:wght@700&display=swap" rel="stylesheet">
   <link href="stylesheets/style.css" rel="stylesheet">
+  <!-- STYLING FOR GRADIENT BACKGROUND TO OVERRIDE GIF BACKGROUND -->
   <style>body {
     background: linear-gradient(-45deg, #cc0029, #ff073a, #ff90a7 );
     background-size: cover;
@@ -33,12 +34,12 @@
 <body>
   <!-- NAV BAR -->
   <nav class="navbar bg-transparent p-5">
-  <div class="container-fluid justify-content-end">
+  <div class="container justify-content-end">
     <div class="navbar-header logout">
-      Hi! <span class="member-name"></span>
+      Hi <span class="member-name"></span>!
       <span class="member-id"></span>
       <!-- <a class="nav-link-sm" href="#">Reviews</a> -->
-      <a class="navbar-brand-sm logout" href="/logout">
+      <a class="navbar-brand-sm logout m-2" href="/logout">
         Logout
       </a>
     </div>
@@ -49,9 +50,9 @@
   <div class="container">
     <div class="row title">local grub</div>
 
-      <!-- creating the list of saved restaurants -->
+      <!-- LIST OF USER'S SAVED BUTTONS -->
     <div class="row justify-content-center mt-4">
-      <div class="col-lg-2">
+      <div class="col-lg-2 logout">
         <ul class="bookmarks" style="text-align:center; list-style-type:none;">
         </ul>
       </div>
@@ -60,6 +61,7 @@
         <div class="row">
 
           <div class="col-md-12">
+            <!-- RESTAURANT IMAGE WILL APPEAR HERE -->
             <div class="card shadow-lg p-3 mb-5 bg-white rounded radient">
               <div class="card-img" id="shop-image">
                 <!-- shop_image -->
