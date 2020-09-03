@@ -6,10 +6,10 @@ body {
   font-size: 16px;
 }
 
-.navbar-header {
+/* .navbar-header {
   font-weight: bolder;
   font-size: larger;
-}
+} */
 
 .title {
   justify-content: center;
@@ -50,6 +50,10 @@ body {
   display: none;
 }
 
+/* #shop-image{
+  width: 600px;
+ 
+} */
 .restaurant-card {
   height: 20rem;
   width: 15rem;
