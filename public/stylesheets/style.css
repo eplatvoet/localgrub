@@ -6,6 +6,10 @@ body {
   font-size: 16px;
 }
 
+.navbar-header {
+  font-weight: bolder;
+}
+
 .title {
   justify-content: center;
   background-color: transparent;
