@@ -10,19 +10,19 @@ module.exports = function(app) {
     if (req.user) {
       res.redirect("/home");
     }
-    res.sendFile(path.join(__dirname, "../public/signup.html"));
+    res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
-  app.get("/login", (req, res) => {
+  app.get("/signup", (req, res) => {
     // If the user already has an account send them to the members page
     if (req.user) {
       res.redirect("/home");
     }
-    res.sendFile(path.join(__dirname, "../public/login.html"));
+    res.sendFile(path.join(__dirname, "../public/signup.html"));
   });
 
   // add isAuthenticated later when everything is finished.
-  app.get("/main", (req, res) => {
+  app.get("/main", isAuthenticated, (req, res) => {
     res.sendFile(path.join(__dirname, "../public/main.html"));
   })
 
