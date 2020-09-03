@@ -92,28 +92,6 @@ $(document).ready(() => {
     $(".start-row").append(displaySearchRestaurant);
   }
 
-  // Click event on function to save one restaurant in MySQL
-  $(".result-one").on("click", function() {
-    $.post("/api/restaurant", {
-      shop_name: response.data.restaurants[0].restaurant.name,
-      address: response.data.restaurants[0].restaurant.location.address,
-      latitude: response.data.restaurants[0].restaurant.location.latitude,
-      longitude: response.data.restaurants[0].restaurant.location.longitude,
-      shop_url: response.data.restaurants[0].restaurant.url,
-      api_review:
-        response.data.restaurants[0].restaurant.user_rating.rating_text,
-      api_rating:
-        response.data.restaurants[0].restaurant.user_rating.aggregate_rating,
-      id: $(".member-id").attr("value"),
-    })
-      .then(function() {
-        console.log("You have succesfully stored this result.");
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  });
-
   function createNewDisplay(data) {
     var newCol = $('<div class="col-md-3">');
     var newCard = $('<div class="card restaurant-card">');
