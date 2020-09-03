@@ -48,7 +48,6 @@ module.exports = function(app) {
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
         name: req.user.name,
-        zipcode: req.user.zipcode,
         email: req.user.email,
         id: req.user.id
       });
@@ -121,7 +120,6 @@ module.exports = function(app) {
 
   // UPDATE ROUTE
   app.put("/api/restaurant/up/:id", (req, res) => {
-    console.log('WHAT IS THIS REQ BODY',req.body);
     db.Restaurant.update(
       {
         user_review: req.body.user_review,
@@ -133,7 +131,6 @@ module.exports = function(app) {
       }
     })
     .then(function(results) {
-      console.log(results);
       res.json(results);
     })
     .catch(err => {

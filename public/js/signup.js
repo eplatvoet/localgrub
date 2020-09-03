@@ -36,14 +36,11 @@ $(document).ready(() => {
         window.location.replace("/home");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
-      .catch((error) => {
-        console.error(error);
-      });
+      .catch(handleLoginErr());
   }
 
   function handleLoginErr(err) {
-    var errString = JSON.stringify(err, null, 2);
-    $("#alert .msg").text(errString);
+    $("#alert .msg").text(err.responseJSON);
     $("#alert").fadeIn(500);
   }
 });

@@ -5,7 +5,6 @@ $(document).ready(() => {
       $(".member-name").text(data.name);
       $(".member-id").text(`Your ID is ${data.id}`);
       $(".member-id").attr("value", data.id);
-      renderAllBookmark(data.id);
     });
   }
 
@@ -126,7 +125,7 @@ $(document).ready(() => {
     $(".start-row").append(displaySearchRestaurant);
   }
 
-  // FUNCITON TO CREATE CARDS TO FILL OUT SEARCH RESULTS
+  // FUNCTION TO CREATE CARDS TO FILL OUT SEARCH RESULTS
   function createNewDisplay(data) {
     const newCol = $("<div class='col-md-3'>");
     const newCard = $("<div class='card restaurant-card'>");

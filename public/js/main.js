@@ -233,7 +233,7 @@ $(document).ready(() => {
     })
       .then(
         event.preventDefault(),
-        getRandomId() // I NEED TO CHANGE THIS FUNCTION TO GET THE FIRST ONE
+        getRandomId() 
       )
       .catch(error => {
         console.error(error);
