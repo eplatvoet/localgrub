@@ -55,25 +55,21 @@ module.exports = function(app) {
     }
   });
   
+  // GET ROUTE , IT GIVE YOU ALL DATA WITHIN USER
   app.get("/api/users/:id", function(req,res) {
-    // console.log(req);
     db.Restaurant.findAll({
       where: {
-        // userId: req.user.id
+
         userId: req.params.id
       },
-      // include: [db.User]
-      // req.params.id comes out undefined.
     }).then(function(data) {
       res.json(data);
     })
   })
 
+  // POST ROUTE, WHICH STORES A NEW DATA USER WISHES TO SAVE.
   app.post("/api/restaurant", (req, res) => {
-    // console.log(req.body)
-    console.log('array\n',req.body.highlights);
     var highlightsStr = req.body.highlights.toString();
-    console.log('string\n',highlightsStr);
     db.Restaurant.create({
       shop_name: req.body.shop_name,
       latitude: req.body.latitude,
@@ -88,7 +84,6 @@ module.exports = function(app) {
       UserId: req.body.id
     })
       .then(() => {
-        // res.json(res);
         res.redirect(201, "/home");
       })
       .catch(err => {
@@ -96,6 +91,7 @@ module.exports = function(app) {
       });
   });
 
+  // GET ROUTE , BUT GETS ONLY ONE PIECE OF DATA.
   app.get("/api/restaurant/:id", (req, res) => {
     db.Restaurant.findOne({
       where: {
@@ -110,6 +106,7 @@ module.exports = function(app) {
     });
   })
 
+  // DELETE ROUTE
   app.delete("/api/restaurant/del/:id", (req, res) => {
     db.Restaurant.destroy({
       where: {
@@ -123,6 +120,7 @@ module.exports = function(app) {
     });
   })
 
+  // UPDATE ROUTE
   app.put("/api/restaurant/up/:id", (req, res) => {
     console.log('WHAT IS THIS REQ BODY',req.body);
     db.Restaurant.update(
@@ -136,6 +134,7 @@ module.exports = function(app) {
       }
     })
     .then(function(results) {
+      console.log(results);
       res.json(results);
     })
     .catch(err => {
