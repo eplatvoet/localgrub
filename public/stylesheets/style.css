@@ -37,6 +37,16 @@ body {
   background-color: #ff073a;
 }
 
+.delete-btn {
+  margin: 10px;
+  margin-top: 15px
+}
+
+.update-btn {
+  margin: 10px;
+  margin-top: 15px
+}
+
 /* #map-render{
   object-fit: cover;
 } */
@@ -62,6 +72,10 @@ body {
   height: 20rem;
   width: 15rem;
   margin-top: 5px;
+}
+
+.card-title {
+  font-size: 14pt
 }
 
 .card-footer {
