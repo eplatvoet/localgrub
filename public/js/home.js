@@ -96,11 +96,14 @@ $(document).ready(() => {
   }
 
   function displaySearch(res) {
-    // console.log("length", res.restaurants);
+    console.log("length", res.restaurants[0].restaurant);
     $(".start-row").empty();
     var displaySearchRestaurant = [];
+    var removeArr = ["Wawa","KFC","Red Lobster","Panera Bread","Taco Bell","Pizza Hut","McDonald's","Subway","Domino's Pizza", "Papa John's Pizza", "Burger King", "Starbucks","Dunkin' Donuts","Dunkin'","Olive Garden","Dairy Queen"];
     for (i = 0; i < res.restaurants.length; i++) {
+      if (res.restaurants[i].restaurant.name.includes(removeArr) === false) {
       displaySearchRestaurant.push(createNewDisplay(res.restaurants[i]));
+      }
     }
     $(".start-row").append(displaySearchRestaurant);
   }

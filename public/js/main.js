@@ -126,11 +126,13 @@ function getSelectedRestaurant(id) {
 
     // RATING NAME
     var ratingText = $("<p>");
+    ratingText.attr("class", "col-md-6");
     ratingText.text("Your Rating: ");
     $(".review-form").append(ratingText);
    
     // CREATING RATING
     var ratingDisplay = $("<p>");
+    ratingDisplay.attr("class", "col-md-6");
     switch(rating) {
         case 5: 
         ratingDisplay.text("😍😍😍😍😍");
@@ -231,9 +233,9 @@ function getSelectedRestaurant(id) {
       method: "DELETE",
       url: "/api/restaurant/del/" + id,
     })
-      .then((res) => {
-        getUserName();
-      })
+      .then(event.preventDefault(),
+      getRandomId() // I NEED TO CHANGE THIS FUNCTION TO GET THE FIRST ONE
+      )
       .catch((error) => {
         console.error(error);
       });
@@ -259,7 +261,9 @@ function getSelectedRestaurant(id) {
       data: review,
     })
       .then(
-          getSelectedRestaurant(id)
+        event.preventDefault(),
+          getSelectedRestaurant(id),
+          console.log("check fucntion if its working")
           )
     .catch((error) => {
     console.error(error);
@@ -268,5 +272,23 @@ function getSelectedRestaurant(id) {
         console.error(error);
       });
   }
+
+  // GET RANDOM ID FROM MYSQL AND PASSING THAT VALUE TO RENDER IT
+  function getRandomId() {
+    var userId = $(".member-id").attr("value");
+    console.log(userId);
+    $.get("/api/restid/" + userId)
+    .then((res) => {
+      console.log("result \n", res);
+      var rndIndex = Math.floor(Math.random() * res.length);
+      console.log('random',res[rndIndex].id);
+      getSelectedRestaurant(res[rndIndex].id);
+      getUserName();
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+
   getUserName();
 });
