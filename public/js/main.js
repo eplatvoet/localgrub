@@ -55,7 +55,6 @@ $(document).ready(() => {
   // ON CLICK EVENT TO GET THE DATA FROM BACKEND.
   $(".bookmarks").on("click", "li", function() {
     const restaurantID = $(this).attr("id");
-    console.log("id\n", $(this).attr("id"));
     getSelectedRestaurant(restaurantID);
   });
 
@@ -63,7 +62,6 @@ $(document).ready(() => {
   function getSelectedRestaurant(id) {
     $.get("/api/restaurant/" + id)
       .then(res => {
-        console.log("result \n", res);
         renderInfo(
           res.address,
           res.shop_name,
@@ -143,12 +141,6 @@ $(document).ready(() => {
     const linebreak = $("<br>");
     $(".review-form").append(linebreak);
 
-    // RATING NAME
-    // const ratingText = $("<p>");
-    // // ratingText.attr("class", "col-md-6");
-    // ratingText.text("Your Rating: ");
-    // $(".review-form").append(ratingText);
-
     // CREATING RATING
     const ratingDisplay = $("<p>");
     // ratingDisplay.attr("class", "col-md-6");
@@ -206,13 +198,8 @@ $(document).ready(() => {
     const linebreakTwo = $("<br>");
     $(".review-form").append(linebreakTwo);
 
-    // CREATING BUTTONS
-    const deleteBtn = $("<button>");
+    // CREATING BUTTON
     const updateBtn = $("<button>");
-    $(deleteBtn)
-      .attr("value", id)
-      .attr("class", "delete-btn buttons")
-      .text("Delete");
     $(updateBtn)
       .attr("value", id)
       .attr("class", "update-btn buttons")
@@ -237,12 +224,6 @@ $(document).ready(() => {
       $("#shop-image").append(imgEl);
     }
   }
-
-  // DELETE BUTTON
-  $(document).on("click", "button.delete-btn", () => {
-    const resId = $(".delete-btn").attr("value");
-    deleteBookmark(resId);
-  });
 
   // FUNCTION WHEN DELETE BUTTON IS CLICKED
   function deleteBookmark(id) {
@@ -281,7 +262,6 @@ $(document).ready(() => {
       .then(
         event.preventDefault(),
         getSelectedRestaurant(id),
-        console.log("check fucntion if its working")
       )
       .catch(error => {
         console.error(error);
@@ -294,12 +274,9 @@ $(document).ready(() => {
   // GET RANDOM ID FROM MYSQL AND PASSING THAT VALUE TO RENDER IT
   function getRandomId() {
     const userId = $(".member-id").attr("value");
-    console.log(userId);
     $.get("/api/restid/" + userId)
       .then(res => {
-        console.log("result \n", res);
         const rndIndex = Math.floor(Math.random() * res.length);
-        console.log("random", res[rndIndex].id);
         getSelectedRestaurant(res[rndIndex].id);
         getUserName();
       })
