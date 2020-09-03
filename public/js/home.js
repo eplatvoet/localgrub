@@ -1,8 +1,5 @@
 $(document).ready(() => {
-  // This file just does a GET request to figure out which user is logged in
-  // and updates the HTML on the page
-
-  // getting the users name to display.
+  //GET THE USER NAME FROM DATABASE
   function getUserName() {
     $.get("/api/user_data").then((data) => {
       $(".member-name").text(data.name);
@@ -45,16 +42,16 @@ $(document).ready(() => {
       });
   }
 
-  // bring out static map. didn't work on pinned locations
-  function getStaticMap(city, state) {
-    $("#map-render").empty();
-    const apiKey = "6kkUl9f91C5XxAWQvi59a4QnmpZMljcM";
-    const queryURL = `https://www.mapquestapi.com/staticmap/v5/map?key=${apiKey}&center=${city},${state}&size=400,200@2x`;
-    var imgEl = document.createElement("img");
-    imgEl.setAttribute(`src`, `${queryURL}`);
-    $("#map-render").append(imgEl);
-    $(".hide").show();
-  }
+  // PRINTS OUT THE STATIC MAP
+  // function getStaticMap(city, state) {
+  //   $("#map-render").empty();
+  //   const apiKey = "6kkUl9f91C5XxAWQvi59a4QnmpZMljcM";
+  //   const queryURL = `https://www.mapquestapi.com/staticmap/v5/map?key=${apiKey}&center=${city},${state}&size=400,200@2x`;
+  //   var imgEl = document.createElement("img");
+  //   imgEl.setAttribute(`src`, `${queryURL}`);
+  //   $("#map-render").append(imgEl);
+  //   $(".hide").show();
+  // }
 
   function getRestaurants(lat, lon) {
     axios({
@@ -69,17 +66,33 @@ $(document).ready(() => {
       params: {
         lat: `${lat}`,
         lon: `${lon}`,
+        sort: "real_distance"
       },
     })
       .then((response) => {
         console.log("list", response.data.restaurants[0]); // restaurant
-        var resNameOne = response.data.restaurants[0].restaurant.name;
-        var resultOne = response.data.restaurants[0].restaurant;
+        // response.data.restaurants.length = 20
         displaySearch(response.data);
+        getPinnedMap(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
+  }
+  
+  function getPinnedMap(data) {
+    console.log('data', data);
+    $("#map-render").empty();
+    var emptyStr = "";
+    for (i = 0; i < data.restaurants.length; i++) {
+      emptyStr += `${data.restaurants[i].restaurant.location.latitude},${data.restaurants[i].restaurant.location.longitude}||`;
+    }
+    const apiKey = "6kkUl9f91C5XxAWQvi59a4QnmpZMljcM";
+    const queryURL = `https://www.mapquestapi.com/staticmap/v5/map?locations=${emptyStr}&size=400,200@2x&key=${apiKey}&defaultMarker=marker-9df2f0-ff073a-sm&`;
+    var imgEl = document.createElement("img");
+    imgEl.setAttribute(`src`, `${queryURL}`);
+    $("#map-render").append(imgEl);
+    $(".hide").show();
   }
 
   function displaySearch(res) {
