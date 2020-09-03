@@ -38,14 +38,14 @@ $(document).ready(() => {
 
     var deleteBtn = $("<button>");
     deleteBtn.text("X");
-    deleteBtn.attr("class", "delete btn btn-sm").attr("value", data.id);
+    deleteBtn.attr("class", "delete btn btn-sm mt-2").attr("value", data.id).attr("style","border-color: gray;");
     newliEl.append(deleteBtn);
     return newliEl;
   }
 
   // DELETE BUTTON FOR LIST
   $(document).on("click", "button.delete", function() {
-    var resId = $(this).attr("value");
+     var resId = $(this).attr("value");
     deleteBookmark(resId);
   });
 
@@ -78,19 +78,21 @@ function getSelectedRestaurant(id) {
     $("#shop-details").empty();
     var title = $("<h4>");
     var pElOne = $("<p>");
-    var pElTwo = $("<a>");
+    var aEl = $("<a>");
     var pElThree = $("<p>");
     var pElFour = $("<p>");
     var pElFive = $("<p>");
     var pElSix = $("<p>");
+    // console.log('text',highlights);
+    console.log('check',hours);
 
-    $(title).text(name);
+    $(title).html(`<strong>${name}</strong>`);
     $(pElOne).text(address);
-    $(pElTwo).attr("href", url).text(`Link to Restaurant`)
-    $(pElThree).text(hours);
-    $(pElFour).text(`Average cost for two: $${costForTwo}`);
-    $(pElFive).text(`Cuisine: ${cuisines}`);
-    $(pElSix).text(highlights.split(", "));
+    $(aEl).attr("href", url).text(`Link to Restaurant`)
+    $(pElThree).html(hours.split(",").join(", "));
+    $(pElFour).html(`<strong>Average cost for two:</strong> $${costForTwo}`);
+    $(pElFive).html(`<strong>Cuisine:</strong> ${cuisines}`);
+    $(pElSix).html(`<strong>Highlights:</strong><br>${highlights.split(",").join(", ")}`);
 
     $("#shop-details").append(title);
     $("#shop-details").append(pElOne);
@@ -98,25 +100,13 @@ function getSelectedRestaurant(id) {
     $("#shop-details").append(pElFour);
     $("#shop-details").append(pElFive);
     $("#shop-details").append(pElSix);
-    $("#shop-details").append(pElTwo);
+    $("#shop-details").append(aEl);
   }
 
   // RENDERS RESTAURANTS REVIEW
   function renderReview(id, review, rating) {
     $(".review-form").empty();
-    var deleteBtn = $("<button>");
-    var updateBtn = $("<button>");
-    $(deleteBtn)
-      .attr("value", id)
-      .attr("class", "delete-btn buttons")
-      .text("Delete");
-    $(updateBtn)
-      .attr("value", id)
-      .attr("class", "update-btn buttons")
-      .text("Update");
-    $(".review-form").append(updateBtn);
-    $(".review-form").append(deleteBtn);
-
+    // CREATING INPUT FIELD FOR REVIEW
     var reviewBody = $("<textarea>");
     $(reviewBody)
       .attr("id", "user-review")
@@ -134,6 +124,12 @@ function getSelectedRestaurant(id) {
     var linebreak = $("<br>");
     $(".review-form").append(linebreak);
 
+    // RATING NAME
+    var ratingText = $("<p>");
+    ratingText.text("Your Rating: ");
+    $(".review-form").append(ratingText);
+   
+    // CREATING RATING
     var ratingDisplay = $("<p>");
     switch(rating) {
         case 5: 
@@ -158,31 +154,51 @@ function getSelectedRestaurant(id) {
     }
     $(".review-form").append(ratingDisplay);
 
-    var ratingBody = $("<select>");
-    $(ratingBody)
-      .attr("name", "rating")
-      .attr("id", "user-rating");
-    var rateOne = $("<option>")
-      .attr("value", 1)
-      .text("1");
-    var rateTwo = $("<option>")
-      .attr("value", 2)
-      .text("2");
-    var rateThree = $("<option>")
-      .attr("value", 3)
-      .text("3");
-    var rateFour = $("<option>")
-      .attr("value", 4)
-      .text("4");
-    var rateFive = $("<option>")
-      .attr("value", 5)
-      .text("5");
-    ratingBody.append(rateFive);
-    ratingBody.append(rateFour);
-    ratingBody.append(rateThree);
-    ratingBody.append(rateTwo);
-    ratingBody.append(rateOne);
-    $(".review-form").append(ratingBody);
+     // RATING DROPDOWN CREATING
+     var ratingBody = $("<select>");
+     $(ratingBody)
+       .attr("name", "rating")
+       .attr("id", "user-rating");
+       // .attr("class", "form-control");
+     var rateOne = $("<option>")
+       .attr("value", 1)
+       .text("1");
+     var rateTwo = $("<option>")
+       .attr("value", 2)
+       .text("2");
+     var rateThree = $("<option>")
+       .attr("value", 3)
+       .text("3");
+     var rateFour = $("<option>")
+       .attr("value", 4)
+       .text("4");
+     var rateFive = $("<option>")
+       .attr("value", 5)
+       .text("5");
+     ratingBody.append(rateFive);
+     ratingBody.append(rateFour);
+     ratingBody.append(rateThree);
+     ratingBody.append(rateTwo);
+     ratingBody.append(rateOne);
+     $(".review-form").append(ratingBody);
+ 
+
+    var linebreak = $("<br>");
+    $(".review-form").append(linebreak);
+
+    // CREATING BUTTONS
+    var deleteBtn = $("<button>");
+    var updateBtn = $("<button>");
+    $(deleteBtn)
+      .attr("value", id)
+      .attr("class", "delete-btn buttons")
+      .text("Delete");
+    $(updateBtn)
+      .attr("value", id)
+      .attr("class", "update-btn buttons")
+      .text("Update");
+    $(".review-form").append(updateBtn);
+    $(".review-form").append(deleteBtn);
    
   }
   
