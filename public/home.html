@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fira+Sans+Condensed:wght@200&family=Lobster+Two:wght@700&display=swap" rel="stylesheet">
   <link href="stylesheets/style.css" rel="stylesheet">
+  <!-- STYLING FOR GRADIENT BACKGROUND TO OVERRIDE GIF BACKGROUND -->
   <style>body {
     background: linear-gradient(-45deg, #cc0029, #ff073a, #ff90a7 );
     background-size: cover;
@@ -48,6 +49,7 @@
   <!-- CONTAINER -->
   <div class="container">
     <div class="row title">local grub</div>
+    <!-- SEARCH AREA TO ENTER CITY/STATE -->
     <div class="row justify-content-center p-2">
       <div class="card shadow-lg p-3 mb-5 bg-white rounded radient">
         <div class="card-body">
@@ -62,7 +64,7 @@
               <br>
               <button type="submit" class="btn btn-light btn-lg submit-button buttons" id="city-search">Find my local spot!</button>
               <br>
-              <!-- Button to go to main page -->
+              <!-- BUTTON TO GO BACK TO MAIN PAGE-->
               <a type="submit" class="btn btn-light btn-sm buttons mt-2" href="/main" style="text-align:center; font-size:large;">Checkout your bookmarked spots!</a>
 
             </div>
@@ -71,7 +73,7 @@
         </div>
       </div>
     </div>
-
+<!-- RESULTS MAP THAT WILL APPEAR ONCE USER PRESSES ENTER -->
     <div class="row justify-content-center hide">
       <div class="col-xs-10">
         <div class="card shadow-lg p-3 mb-5 bg-white rounded radient">
@@ -80,9 +82,8 @@
       </div>
     </div>
 
-    <!-- conatiner and start row should exist, and everything you can remove. -->
+    <!-- CONTAINER WHERE RESTAURANT RESULTS WILL APPEAR AS CARDS -->
     <div class="container">
-      <!-- creating the list of saved restaurants -->
       <div class="start-row row">
 
       </div>
