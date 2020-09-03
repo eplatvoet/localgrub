@@ -59,7 +59,6 @@ module.exports = function(app) {
   app.get("/api/users/:id", function(req,res) {
     db.Restaurant.findAll({
       where: {
-
         userId: req.params.id
       },
     }).then(function(data) {
@@ -138,6 +137,20 @@ module.exports = function(app) {
       res.json(results);
     })
     .catch(err => {
+      res.status(404).json(err);
+    });
+  })
+
+  app.get("/api/restid/:id", (req, res) => {
+    db.Restaurant.findAll({
+      where: {
+        userId: req.params.id
+      },
+      attributes: ['id']
+    })
+    .then(function(results) {
+      res.json(results);
+    }).catch(err => {
       res.status(404).json(err);
     });
   })

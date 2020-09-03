@@ -6,6 +6,11 @@ body {
   font-size: 16px;
 }
 
+.navbar-header {
+  font-weight: bolder;
+  font-size: x-large;
+}
+
 .title {
   justify-content: center;
   background-color: transparent;
@@ -30,9 +35,23 @@ body {
   background-color: #ff073a;
 }
 
-.logout {
-  font-family: "Bebas Neue", cursive;
+.delete-btn {
+  margin: 10px;
+  margin-top: 15px
+}
+
+.update-btn {
+  margin: 10px;
+  margin-top: 15px
+}
+
+.logout{
+  font-family: 'Bebas Neue', cursive;
   font-size: 16px;
+}
+
+.navbar-brand-sm{
+  color: #83efec;
 }
 
 .hide {
@@ -43,6 +62,10 @@ body {
   height: 20rem;
   width: 15rem;
   margin-top: 5px;
+}
+
+.card-title {
+  font-size: 14pt
 }
 
 .card-footer {

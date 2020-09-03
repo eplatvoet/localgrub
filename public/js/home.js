@@ -1,7 +1,7 @@
 $(document).ready(() => {
   //GET THE USER NAME FROM DATABASE
   function getUserName() {
-    $.get("/api/user_data").then((data) => {
+    $.get("/api/user_data").then(data => {
       $(".member-name").text(data.name);
       $(".member-id").text(`Your ID is ${data.id}`);
       $(".member-id").attr("value", data.id);
@@ -9,13 +9,13 @@ $(document).ready(() => {
     });
   }
 
-  $(".submit-button").on("click", function(event) {
+  $(".submit-button").on("click", event => {
     event.preventDefault();
 
-    var cityInput = $("#city-input")
+    const cityInput = $("#city-input")
       .val()
       .trim();
-    var stateInput = $("#state-input")
+    const stateInput = $("#state-input")
       .val()
       .trim();
 
@@ -30,14 +30,14 @@ $(document).ready(() => {
     const queryURL = `https://www.mapquestapi.com/geocoding/v1/address?key=${apiKey}&location=${city},${state}`;
     $.ajax({
       url: queryURL,
-      method: "GET",
+      method: "GET"
     })
-      .then((data) => {
-        let lat = data.results[0].locations[0].latLng.lat;
-        let lon = data.results[0].locations[0].latLng.lng;
+      .then(data => {
+        const lat = data.results[0].locations[0].latLng.lat;
+        const lon = data.results[0].locations[0].latLng.lng;
         getRestaurants(lat, lon);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error);
       });
   }
@@ -69,51 +69,73 @@ $(document).ready(() => {
         sort: "real_distance"
       },
     })
-      .then((response) => {
+      .then(response => {
         console.log("list", response.data.restaurants[0]); // restaurant
         // response.data.restaurants.length = 20
         displaySearch(response.data);
         getPinnedMap(response.data);
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
       });
   }
-  
+
   function getPinnedMap(data) {
-    console.log('data', data);
+    console.log("data", data);
     $("#map-render").empty();
-    var emptyStr = "";
+    let emptyStr = "";
     for (i = 0; i < data.restaurants.length; i++) {
       emptyStr += `${data.restaurants[i].restaurant.location.latitude},${data.restaurants[i].restaurant.location.longitude}||`;
     }
     const apiKey = "6kkUl9f91C5XxAWQvi59a4QnmpZMljcM";
     const queryURL = `https://www.mapquestapi.com/staticmap/v5/map?locations=${emptyStr}&size=400,200@2x&key=${apiKey}&defaultMarker=marker-9df2f0-ff073a-sm&`;
-    var imgEl = document.createElement("img");
+    const imgEl = document.createElement("img");
     imgEl.setAttribute(`src`, `${queryURL}`);
     $("#map-render").append(imgEl);
     $(".hide").show();
   }
 
   function displaySearch(res) {
-    // console.log("length", res.restaurants);
+    console.log("length", res.restaurants[0].restaurant);
     $(".start-row").empty();
-    var displaySearchRestaurant = [];
+    const displaySearchRestaurant = [];
+    const removeArr = [
+      "Wawa",
+      "KFC",
+      "Red Lobster",
+      "Panera Bread",
+      "Taco Bell",
+      "Pizza Hut",
+      "McDonald's",
+      "Subway",
+      "Domino's Pizza",
+      "Papa John's Pizza",
+      "Burger King",
+      "Starbucks",
+      "Dunkin' Donuts",
+      "Dunkin'",
+      "Olive Garden",
+      "Dairy Queen"
+    ];
+    // console.log(removeArr.indexOf(res.restaurants[0].restaurant.name));
+    // console.log(res.restaurants[0].restaurant.name.indexOf(removeArr));
     for (i = 0; i < res.restaurants.length; i++) {
-      displaySearchRestaurant.push(createNewDisplay(res.restaurants[i]));
+      if (removeArr.indexOf(res.restaurants[i].restaurant.name) === -1) {
+        displaySearchRestaurant.push(createNewDisplay(res.restaurants[i]));
+      }
     }
     $(".start-row").append(displaySearchRestaurant);
   }
 
   function createNewDisplay(data) {
-    var newCol = $('<div class="col-md-3">');
-    var newCard = $('<div class="card restaurant-card">');
-    var newCardBody = $('<div class="card-body">');
-    var restName = $("<h4>");
-    var restAddress = $("<p>");
-    var restCuisine = $("<p>");
-    var newCardFooter = $("<div class='card-footer'>")
-    var saveButton = $("<button>");
+    const newCol = $("<div class='col-md-3'>");
+    const newCard = $("<div class='card restaurant-card'>");
+    const newCardBody = $("<div class='card-body'>");
+    const restName = $("<h4>");
+    const restAddress = $("<p>");
+    const restCuisine = $("<p>");
+    const newCardFooter = $("<div class='card-footer'>");
+    const saveButton = $("<button>");
 
     restName.text(data.restaurant.name);
     restAddress.text(data.restaurant.location.address);
@@ -135,19 +157,19 @@ $(document).ready(() => {
   // Click event on function
   $(".start-row").on("click", "button", function() {
     // console.log($(this).attr("id")); // res id
-    var resId = $(this).attr("id");
+    const resId = $(this).attr("id");
     axios({
       method: "GET",
       url: "https://developers.zomato.com/api/v2.1/restaurant",
       headers: {
         "content-type": "application/octet-stream",
         user_key: "723c59fca106ce1599f751dc65a0c43f",
-        useQueryString: true,
+        useQueryString: true
       },
       params: {
-        res_id: resId,
-      },
-    }).then(function(res) {
+        res_id: resId
+      }
+    }).then(res => {
       $.post("/api/restaurant", {
         shop_name: res.data.name,
         latitude: res.data.location.latitude,
@@ -160,10 +182,13 @@ $(document).ready(() => {
         highlights: res.data.highlights,
         shop_image: res.data.featured_image,
         id: $(".member-id").attr("value"),
-      }).then(console.log("You have succesfully saved the restaurant.\n", res.data))
-      .catch((error) => {
-        console.error(error);
-      });
+      })
+        .then(
+          console.log("You have succesfully saved the restaurant.\n", res.data)
+        )
+        .catch(error => {
+          console.error(error);
+        });
     });
   });
 
