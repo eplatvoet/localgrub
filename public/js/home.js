@@ -1,5 +1,5 @@
 $(document).ready(() => {
-  //GET THE USER NAME FROM DATABASE
+  //GET THE USER NAME FROM DATABASE.
   function getUserName() {
     $.get("/api/user_data").then(data => {
       $(".member-name").text(data.name);
@@ -9,6 +9,7 @@ $(document).ready(() => {
     });
   }
 
+  // CLICKON EVENT TO RECEIVE CITY/STATE WHAT USER INPUT.
   $(".submit-button").on("click", event => {
     event.preventDefault();
 
@@ -20,11 +21,11 @@ $(document).ready(() => {
       .trim();
 
     getSearch(cityInput, stateInput);
-    getStaticMap(cityInput, stateInput);
+    // getStaticMap(cityInput, stateInput);
     // save users input to backend.
   });
 
-  // getting the lat and lon for the user's searched city.
+  // GETTING THE CITY LATITUDE AND LONGITUDE USING USERS INPUT
   function getSearch(city, state) {
     const apiKey = "6kkUl9f91C5XxAWQvi59a4QnmpZMljcM";
     const queryURL = `https://www.mapquestapi.com/geocoding/v1/address?key=${apiKey}&location=${city},${state}`;
@@ -42,7 +43,8 @@ $(document).ready(() => {
       });
   }
 
-  // PRINTS OUT THE STATIC MAP
+  // CURRENTLY NOT USING, BUT POSSIBLY USE FOR FUTRE
+  // PRINTS OUT THE STATIC MAP 
   // function getStaticMap(city, state) {
   //   $("#map-render").empty();
   //   const apiKey = "6kkUl9f91C5XxAWQvi59a4QnmpZMljcM";
@@ -53,6 +55,7 @@ $(document).ready(() => {
   //   $(".hide").show();
   // }
 
+  // GETTING THE ARRAYS OF RESTAURANTS USING AXIOS.
   function getRestaurants(lat, lon) {
     axios({
       method: "GET",
@@ -62,7 +65,6 @@ $(document).ready(() => {
         user_key: "723c59fca106ce1599f751dc65a0c43f",
         useQueryString: true,
       },
-
       params: {
         lat: `${lat}`,
         lon: `${lon}`,
@@ -70,8 +72,6 @@ $(document).ready(() => {
       },
     })
       .then(response => {
-        console.log("list", response.data.restaurants[0]); // restaurant
-        // response.data.restaurants.length = 20
         displaySearch(response.data);
         getPinnedMap(response.data);
       })
@@ -80,8 +80,8 @@ $(document).ready(() => {
       });
   }
 
+  // LOOK FOR LAT/LON FOR EACH RESTAURANT AND USE THOSE TO MARK MAP AND PRINT STATIC MAP.
   function getPinnedMap(data) {
-    console.log("data", data);
     $("#map-render").empty();
     let emptyStr = "";
     for (i = 0; i < data.restaurants.length; i++) {
@@ -95,8 +95,9 @@ $(document).ready(() => {
     $(".hide").show();
   }
 
+  // DISPLAYS THE SEARCH WITH CARDS DYNAMICALLY CREATE
+  // WILL ALSO FILTER OUT THE CHAIN-RESTAURANTS THAT ARE LISTED ON ARRAY.
   function displaySearch(res) {
-    console.log("length", res.restaurants[0].restaurant);
     $(".start-row").empty();
     const displaySearchRestaurant = [];
     const removeArr = [
@@ -117,8 +118,6 @@ $(document).ready(() => {
       "Olive Garden",
       "Dairy Queen"
     ];
-    // console.log(removeArr.indexOf(res.restaurants[0].restaurant.name));
-    // console.log(res.restaurants[0].restaurant.name.indexOf(removeArr));
     for (i = 0; i < res.restaurants.length; i++) {
       if (removeArr.indexOf(res.restaurants[i].restaurant.name) === -1) {
         displaySearchRestaurant.push(createNewDisplay(res.restaurants[i]));
@@ -127,6 +126,7 @@ $(document).ready(() => {
     $(".start-row").append(displaySearchRestaurant);
   }
 
+  // FUNCITON TO CREATE CARDS TO FILL OUT SEARCH RESULTS
   function createNewDisplay(data) {
     const newCol = $("<div class='col-md-3'>");
     const newCard = $("<div class='card restaurant-card'>");
@@ -154,9 +154,8 @@ $(document).ready(() => {
     return newCol;
   }
 
-  // Click event on function
+  // CLICK ONEVENT FUNCTION WHICH WILL SAVES THE DATA INTO MYSQL
   $(".start-row").on("click", "button", function() {
-    // console.log($(this).attr("id")); // res id
     const resId = $(this).attr("id");
     axios({
       method: "GET",
