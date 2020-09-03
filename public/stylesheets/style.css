@@ -32,7 +32,9 @@ body {
   background-color: #ff073a;
 }
 
-
+#map-render{
+  object-fit: cover;
+}
 
 .logout{
   font-family: 'Bebas Neue', cursive;
