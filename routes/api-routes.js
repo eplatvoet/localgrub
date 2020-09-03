@@ -128,7 +128,7 @@ module.exports = function(app) {
     db.Restaurant.update(
       {
         user_review: req.body.user_review,
-        // user_rating: req.body.user_rating
+        user_rating: req.body.user_rating
       },
       {
       where: {
