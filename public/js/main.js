@@ -163,11 +163,19 @@ $(document).ready(() => {
   }
 
   function renderImage(image) {
-    $("#shop-image").empty();
-    var imgEl = $("<img>");
-    $(imgEl).attr("src", image);
-    $(imgEl).attr("class", "card-img");
-    $("#shop-image").append(imgEl);
+    if (image === "") {
+        $("#shop-image").empty();
+        var imgEl = $("<img>");
+        $(imgEl).attr("src", "./images/background.gif");
+        $(imgEl).attr("class", "card-img");
+        $("#shop-image").append(imgEl);
+    } else {
+        $("#shop-image").empty();
+        var imgEl = $("<img>");
+        $(imgEl).attr("src", image);
+        $(imgEl).attr("class", "card-img");
+        $("#shop-image").append(imgEl);
+    }
   }
 
   // Delete Button
