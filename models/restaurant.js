@@ -62,8 +62,7 @@ module.exports = function(sequelize, DataTypes) {
         },
     });
     
-    // need to ask if we ever need foreign key, or is having only onDelete cascade is fine.
-    Restaurant.associate = function(models) {
+   Restaurant.associate = function(models) {
         Restaurant.belongsTo(models.User, {
             foreignKey: {
                 allowNull: false
