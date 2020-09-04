@@ -3,7 +3,7 @@ $(document).ready(() => {
   function getUserName() {
     $.get("/api/user_data").then(data => {
       $(".member-name").text(data.name);
-      $(".member-id").text(`Your ID is ${data.id}`);
+      // $(".member-id").text(`Your ID is ${data.id}`);
       $(".member-id").attr("value", data.id);
     });
   }
