@@ -49,4 +49,12 @@ Team:
 [GITHUB REPO](https://github.com/eplatvoet/localgrub)  
 
 ## SCREENSHOTS
-
+![SCREEN CASTIFY](screenshots/LocalGrub.gif)  
+![SCREENSHOT](screenshots/1.png)  
+![SCREENSHOT](screenshots/2.png)  
+![SCREENSHOT](screenshots/3.png)  
+![SCREENSHOT](screenshots/4.png)  
+![SCREENSHOT](screenshots/5.png)  
+![SCREENSHOT](screenshots/6.png)  
+![SCREENSHOT](screenshots/7.png)  
+![SCREENSHOT](screenshots/8.png)  
