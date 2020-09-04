@@ -18,7 +18,9 @@ Local Grub is an app that utilizes the Zomato & MapQuest API to gather local res
 Unlicensed
 
 ## INSTALLATION
-Run "npm i" in command line to download dependencies. 
+- Install Chrome extension:
+    - Allow CORS: Access-Control-Allow-origin
+- Run "npm i" in command line to download dependencies. 
 
 ## TECHNOLOGIES
 - HTML  
