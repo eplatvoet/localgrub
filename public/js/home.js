@@ -2,23 +2,23 @@ $(document).ready(() => {
   //GET THE USER NAME FROM DATABASE.
   function getUserName() {
     $.get("/api/user_data").then(data => {
-      $(".member-name").text(data.name);
+      const memberName = document.querySelector(".member-name").textContent = data.name;
+      const memberId = document.querySelector(".member-id").setAttribute("value", data.id);
+      // $(".member-name").text(data.name);
       // $(".member-id").text(`Your ID is ${data.id}`);
-      $(".member-id").attr("value", data.id);
+      // $(".member-id").attr("value", data.id);
     });
   }
 
   // CLICKON EVENT TO RECEIVE CITY/STATE WHAT USER INPUT.
-  $(".submit-button").on("click", event => {
-    event.preventDefault();
+  const sumbitButton = document.querySelector(".submit-button");
+  sumbitButton.addEventListener("click", event => {
+    // $(".submit-button").on("click", event => {
+    event.preventDefault()
 
-    const cityInput = $("#city-input")
-      .val()
-      .trim();
-    const stateInput = $("#state-input")
-      .val()
-      .trim();
-
+    const cityInput = document.querySelector("#city-input").value.trim();
+    const stateInput = document.querySelector("#state-input").value.trim();
+  
     getSearch(cityInput, stateInput);
     // getStaticMap(cityInput, stateInput);
     // save users input to backend.
@@ -26,27 +26,28 @@ $(document).ready(() => {
 
   // GETTING THE CITY LATITUDE AND LONGITUDE USING USERS INPUT
   function getSearch(city, state) {
-    const apiKey = "6kkUl9f91C5XxAWQvi59a4QnmpZMljcM";
-    const queryURL = `https://www.mapquestapi.com/geocoding/v1/address?key=${apiKey}&location=${city},${state}`;
     $.ajax({
-      url: queryURL,
-      method: "GET"
+      url: "/api/search/",
+      method: "GET",
+      data: {
+        city: city,
+        state: state
+      }
+    }).then(data => {
+      const lat = data[0].locations[0].latLng.lat;
+      const lon = data[0].locations[0].latLng.lng;
+      getRestaurants(lat, lon);
     })
-      .then(data => {
-        const lat = data.results[0].locations[0].latLng.lat;
-        const lon = data.results[0].locations[0].latLng.lng;
-        getRestaurants(lat, lon);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    .catch(error => {
+      console.error(error);
+    });
   }
 
   // CURRENTLY NOT USING, BUT POSSIBLY USE FOR FUTRE
   // PRINTS OUT THE STATIC MAP 
   // function getStaticMap(city, state) {
   //   $("#map-render").empty();
-  //   const apiKey = "6kkUl9f91C5XxAWQvi59a4QnmpZMljcM";
+  //    const apiKey = "";
   //   const queryURL = `https://www.mapquestapi.com/staticmap/v5/map?key=${apiKey}&center=${city},${state}&size=400,200@2x`;
   //   var imgEl = document.createElement("img");
   //   imgEl.setAttribute(`src`, `${queryURL}`);
@@ -56,23 +57,17 @@ $(document).ready(() => {
 
   // GETTING THE ARRAYS OF RESTAURANTS USING AXIOS.
   function getRestaurants(lat, lon) {
-    axios({
+    $.ajax({
+      url: "/api/zomato/search/",
       method: "GET",
-      url: "https://developers.zomato.com/api/v2.1/search",
-      headers: {
-        "content-type": "application/octet-stream",
-        user_key: "723c59fca106ce1599f751dc65a0c43f",
-        useQueryString: true,
-      },
-      params: {
-        lat: `${lat}`,
-        lon: `${lon}`,
-        sort: "real_distance"
-      },
+      data: {
+        lat: lat,
+        lon: lon
+      }
     })
       .then(response => {
-        displaySearch(response.data);
-        getPinnedMap(response.data);
+        displaySearch(response);
+        getPinnedMap(response);
       })
       .catch(error => {
         console.log(error);
@@ -156,39 +151,82 @@ $(document).ready(() => {
   // CLICK ONEVENT FUNCTION WHICH WILL SAVES THE DATA INTO MYSQL
   $(".start-row").on("click", "button", function() {
     const resId = $(this).attr("id");
-    axios({
+    $.ajax({
+      url: "/api/zomato/searchbyone",
       method: "GET",
-      url: "https://developers.zomato.com/api/v2.1/restaurant",
-      headers: {
-        "content-type": "application/octet-stream",
-        user_key: "723c59fca106ce1599f751dc65a0c43f",
-        useQueryString: true
-      },
-      params: {
-        res_id: resId
+      data: {
+        resId: resId
       }
-    }).then(res => {
-      $.post("/api/restaurant", {
-        shop_name: res.data.name,
-        latitude: res.data.location.latitude,
-        longitude: res.data.location.longitude,
-        address: res.data.location.address,
-        hours: res.data.timings,
-        cost_for_two: res.data.average_cost_for_two,
-        shop_url: res.data.url,
-        cuisines: res.data.cuisines,
-        highlights: res.data.highlights,
-        shop_image: res.data.featured_image,
-        id: $(".member-id").attr("value"),
-      })
-        .then(
-          console.log("You have succesfully saved the restaurant.\n", res.data)
-        )
-        .catch(error => {
-          console.error(error);
-        });
-    });
+    })
+    .then(res => {
+      // console.log('current work',res);
+      saveRestaurant(res);
+    })
+    .catch(error => {
+      console.log(error);
+    })
   });
 
+  function saveRestaurant(data) {
+    // console.log(data);
+    $.post({
+      url: "/api/restaurant",
+      method: "POST",
+      data: {
+        shop_name: data.name,
+        latitude: data.location.latitude,
+        longitude: data.location.longitude,
+        address: data.location.address,
+        hours: data.timings,
+        cost_for_two: data.average_cost_for_two,
+        shop_url: data.url,
+        cuisines: data.cuisines,
+        highlights: data.highlights,
+        shop_image: data.featured_image,
+        id: $(".member-id").attr("value")
+      }
+    })
+    .then(res => {
+      console.log('after post',res);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
+  // moved axios calls to the backend.
+  // axios({
+  //   method: "GET",
+  //   url: "https://developers.zomato.com/api/v2.1/restaurant",
+  //   headers: {
+  //     "content-type": "application/octet-stream",
+  //     user_key: "723c59fca106ce1599f751dc65a0c43f",
+  //     useQueryString: true
+  //   },
+  //   params: {
+  //     res_id: resId
+  //   }
+  // }).then(res => {
+  //   $.post("/api/restaurant", {
+  //     shop_name: res.data.name,
+  //     latitude: res.data.location.latitude,
+  //     longitude: res.data.location.longitude,
+  //     address: res.data.location.address,
+  //     hours: res.data.timings,
+  //     cost_for_two: res.data.average_cost_for_two,
+  //     shop_url: res.data.url,
+  //     cuisines: res.data.cuisines,
+  //     highlights: res.data.highlights,
+  //     shop_image: res.data.featured_image,
+  //     id: $(".member-id").attr("value"),
+  //   })
+  //     .then(
+  //       console.log("You have succesfully saved the restaurant.\n", res.data)
+  //     )
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // });
+  
   getUserName();
 });

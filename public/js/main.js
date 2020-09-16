@@ -205,7 +205,6 @@ $(document).ready(() => {
       .attr("class", "update-btn buttons")
       .text("Update");
     $(".review-form").append(updateBtn);
-    $(".review-form").append(deleteBtn);
   }
 
   // RENDERS IMAGE THAT ARE PROVIDED FROM API
